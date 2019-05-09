@@ -1,0 +1,12 @@
+{
+  "name": "ziwang",
+  "version": "1.0.0",
+  "description": "资网",
+  "main": "index.js",
+  "scripts": {
+    "dev": "browser-sync start --server --startPath \"src/index.html\" --files \"src/**\" --browser \"firefox\"",
+    "sass": "sass --watch src/sass:src/css --style expanded"
+  },
+  "author": "leonardo",
+  "license": "ISC"
+}
