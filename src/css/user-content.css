@@ -1,0 +1,58 @@
+.content {
+  width: 100%;
+  overflow: hidden;
+}
+.content .left-menu {
+  float: left;
+  width: 12%;
+}
+.content .left-menu ul li {
+  text-align: center;
+}
+.content .left-menu ul li .active {
+  color: #fff !important;
+  background: #e64620;
+}
+.content .left-menu ul li a, .content .left-menu ul li .active {
+  padding: 6px 16px;
+  color: #666;
+  line-height: 40px;
+  display: block;
+  border-radius: 7px;
+  text-decoration: none;
+}
+.content .right-info {
+  width: 81%;
+  float: right;
+  padding: 0 32px;
+  background-color: #fff;
+}
+.content .right-info .title {
+  font-size: 20px;
+  color: #3d3d3d;
+  height: 90px;
+  line-height: 90px;
+  border-bottom: 1px solid #e0e0e0;
+}
+.content .right-info .info {
+  margin-top: 20px;
+  overflow: hidden;
+}
+.content .right-info .info .photo {
+  float: left;
+}
+.content .right-info .info .photo img {
+  border-radius: 50%;
+}
+.content .right-info .info .photo a, .content .right-info .info .photo .left-menu ul li .active, .content .left-menu ul li .right-info .info .photo .active {
+  margin-top: 10px;
+  color: #666;
+  display: block;
+  text-align: center;
+}
+.content .right-info .info .user {
+  float: left;
+  margin-left: 20px;
+}
+
+/*# sourceMappingURL=user-content.css.map */
