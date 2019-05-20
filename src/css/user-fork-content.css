@@ -1,0 +1,70 @@
+.content {
+  width: 100%;
+  overflow: hidden;
+}
+.content .left-menu {
+  float: left;
+  width: 12%;
+}
+.content .left-menu ul li {
+  text-align: center;
+}
+.content .left-menu ul li .active {
+  color: #fff !important;
+  background: #e64620;
+}
+.content .left-menu ul li a, .content .left-menu ul li .active, .content .left-menu .right-info .info ul li .cancel, .content .right-info .info .left-menu ul li .cancel {
+  padding: 6px 16px;
+  color: #666;
+  line-height: 40px;
+  display: block;
+  border-radius: 7px;
+  text-decoration: none;
+}
+.content .right-info {
+  width: 81%;
+  float: right;
+  padding: 0 32px;
+  background-color: #fff;
+}
+.content .right-info .title {
+  font-size: 20px;
+  color: #3d3d3d;
+  height: 90px;
+  line-height: 90px;
+  border-bottom: 1px solid #e0e0e0;
+}
+.content .right-info .title .pieces {
+  float: right;
+}
+.content .right-info .info {
+  padding-bottom: 80px;
+}
+.content .right-info .info ul li {
+  overflow: hidden;
+  padding: 18px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+.content .right-info .info ul li a, .content .right-info .info .left-menu ul li .active, .content .left-menu .right-info .info ul li .active, .content .right-info .info ul li .cancel {
+  float: left;
+  display: block;
+  color: #4d4d4d;
+  text-decoration: none;
+  font-size: 16px;
+}
+.content .right-info .info ul li a:hover, .content .right-info .info .left-menu ul li .active:hover, .content .left-menu .right-info .info ul li .active:hover, .content .right-info .info ul li .cancel:hover {
+  color: #ca0c16;
+}
+.content .right-info .info ul li span {
+  display: block;
+  float: right;
+  color: #ccc;
+}
+.content .right-info .info ul li .cancel {
+  float: right;
+  margin-left: 20px;
+  font-size: 14px;
+  color: #999999;
+}
+
+/*# sourceMappingURL=user-fork-content.css.map */
