@@ -1,0 +1,146 @@
+body {
+  background: #fff url(../img/bg.jpg) no-repeat center top;
+}
+body .wrapper {
+  overflow: visible;
+}
+
+.login-box, .register-box {
+  width: 300px;
+  min-height: 300px;
+  padding: 20px 30px;
+  position: absolute;
+  right: 50px;
+  top: 100px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  background-color: #fff;
+}
+.login-box .header, .register-box .header {
+  height: 35px;
+}
+.login-box .header .title, .register-box .header .title {
+  color: #333;
+  font-size: 18px;
+}
+.login-box .header a, .register-box .header a {
+  float: right;
+  font-size: 12px;
+  color: #333;
+  text-decoration: none;
+  line-height: 25px;
+}
+.login-box .header a:hover, .register-box .header a:hover {
+  color: #2FB3FF;
+}
+.login-box .panel, .register-box .panel {
+  margin-top: 12px;
+}
+.login-box .panel form .mobile, .register-box .panel form .mobile, .login-box .panel form .password, .register-box .panel form .password {
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.login-box .panel form .mobile label, .register-box .panel form .mobile label, .login-box .panel form .password label, .register-box .panel form .password label {
+  float: left;
+  display: block;
+  width: 60px;
+  height: 40px;
+  line-height: 38px;
+  text-align: center;
+  border: 1px solid #c9c9c9;
+  border-right: none;
+}
+.login-box .panel form .mobile label i, .register-box .panel form .mobile label i, .login-box .panel form .password label i, .register-box .panel form .password label i {
+  color: #adadad;
+}
+.login-box .panel form .mobile input, .register-box .panel form .mobile input, .login-box .panel form .password input, .register-box .panel form .password input {
+  width: 214px;
+  height: 22px;
+  padding: 9px 8px 9px 15px;
+  border: 1px solid #c9c9c9;
+}
+.login-box .panel form .code, .register-box .panel form .code {
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.login-box .panel form .code input, .register-box .panel form .code input {
+  height: 22px;
+  padding: 9px 8px 9px 15px;
+  border: 1px solid #c9c9c9;
+}
+.login-box .panel form .code button, .register-box .panel form .code button {
+  color: #fff;
+  display: block;
+  float: right;
+  width: 115px;
+  height: 40px;
+  line-height: 38px;
+  border: 1px solid #2FB3FF;
+  position: relative;
+  background-color: #2FB3FF;
+  cursor: pointer;
+}
+.login-box .panel form .code button.disabled, .register-box .panel form .code button.disabled {
+  border: 1px solid #c1c1c1;
+  background-color: #c1c1c1;
+  cursor: default;
+}
+.login-box .panel form .msg, .register-box .panel form .msg {
+  color: #ef4123;
+}
+.login-box .panel form .submit, .register-box .panel form .submit {
+  margin-top: 25px;
+  width: 100%;
+  border: 0;
+  height: 40px;
+  color: #fff;
+  background-color: #2FB3FF;
+  cursor: pointer;
+}
+.login-box .panel form .third-login, .register-box .panel form .third-login {
+  margin-top: 20px;
+  font-size: 12px;
+  overflow: hidden;
+}
+.login-box .panel form .third-login .other, .register-box .panel form .third-login .other {
+  float: left;
+}
+.login-box .panel form .third-login .other span, .register-box .panel form .third-login .other span {
+  float: left;
+  line-height: 26px;
+  margin-right: 5px;
+}
+.login-box .panel form .third-login .other img, .register-box .panel form .third-login .other img {
+  cursor: pointer;
+}
+.login-box .panel form .third-login a, .register-box .panel form .third-login a {
+  float: right;
+  line-height: 26px;
+  color: #333;
+  text-decoration: none;
+}
+.login-box .panel form .third-login a:hover, .register-box .panel form .third-login a:hover {
+  color: #2FB3FF;
+}
+.login-box .panel .account a, .register-box .panel .account a {
+  position: absolute;
+  display: block;
+  text-decoration: none;
+  font-size: 12px;
+  color: #333;
+  right: 30px;
+}
+.login-box .panel .account a:hover, .register-box .panel .account a:hover {
+  color: #2FB3FF;
+}
+
+.register-box .code {
+  margin-bottom: 10px !important;
+}
+.register-box .submit {
+  margin-top: 10px !important;
+}
+.register-box .third-login {
+  margin-top: 5px !important;
+}
+
+/*# sourceMappingURL=login.css.map */
