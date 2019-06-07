@@ -120,8 +120,6 @@ class SmsLogin extends React.Component {
         this.setState({ password: password, error: { flag: false, msg: '' } })
     }
 
-
-
     sendSms() {
         const mobile = this.state.mobile
         fetch(baseUrl + `/user/sendsms/${mobile}`, { method: 'POST' })

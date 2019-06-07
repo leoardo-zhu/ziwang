@@ -1,5 +1,3 @@
-
-
 function Header() {
 
     const user = {
@@ -22,16 +20,18 @@ function Header() {
                 <li><a href="me.html">我的</a></li>
             </ul>
             {/* <!-- 最右侧用户模块 --> */}
-            {user.name === undefined ? <Login /> : <User user={user} />}
+            {user.token === undefined ? <Login /> : <User user={user} />}
         </div>
     )
 }
 
 function Login() {
     return (
-       <div className="login">
-           <a href="login.html">登录</a>
-       </div>
+        <div className="login">
+            <li>
+                <a href="login.html">登录</a>
+            </li>
+        </div>
     )
 }
 
@@ -42,6 +42,16 @@ class User extends React.Component {
             display: 'none'
         }
     }
+
+    logout() {
+        
+        Cookies.remove('TokenKey')
+        Cookies.remove('NameKey')
+        Cookies.remove('AvatarKey')
+
+        location.reload()
+    }
+
     render() {
         return (
             <div className="user-info">
@@ -62,6 +72,10 @@ class User extends React.Component {
                         <li>
                             <i className="fa fa-user" aria-hidden="true"></i>
                             <a href="./makeFriends-submit.html" target="_blank">我的信息</a>
+                        </li>
+                        <li>
+                            <i class="fa fa-sign-out" aria-hidden="true"></i>
+                            <a href="javascript:void(0)" target="_blank" onClick={this.logout}>退出</a>
                         </li>
 
                     </ul>

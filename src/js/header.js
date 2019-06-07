@@ -62,7 +62,7 @@ function Header() {
                 )
             )
         ),
-        user.name === undefined ? React.createElement(Login, null) : React.createElement(User, { user: user })
+        user.token === undefined ? React.createElement(Login, null) : React.createElement(User, { user: user })
     );
 }
 
@@ -71,9 +71,13 @@ function Login() {
         'div',
         { className: 'login' },
         React.createElement(
-            'a',
-            { href: 'login.html' },
-            '\u767B\u5F55'
+            'li',
+            null,
+            React.createElement(
+                'a',
+                { href: 'login.html' },
+                '\u767B\u5F55'
+            )
         )
     );
 }
@@ -93,6 +97,16 @@ var User = function (_React$Component) {
     }
 
     _createClass(User, [{
+        key: 'logout',
+        value: function logout() {
+
+            Cookies.remove('TokenKey');
+            Cookies.remove('NameKey');
+            Cookies.remove('AvatarKey');
+
+            location.reload();
+        }
+    }, {
         key: 'render',
         value: function render() {
             var _this2 = this;
@@ -148,6 +162,16 @@ var User = function (_React$Component) {
                                 'a',
                                 { href: './makeFriends-submit.html', target: '_blank' },
                                 '\u6211\u7684\u4FE1\u606F'
+                            )
+                        ),
+                        React.createElement(
+                            'li',
+                            null,
+                            React.createElement('i', { 'class': 'fa fa-sign-out', 'aria-hidden': 'true' }),
+                            React.createElement(
+                                'a',
+                                { href: 'javascript:void(0)', target: '_blank', onClick: this.logout },
+                                '\u9000\u51FA'
                             )
                         )
                     )
