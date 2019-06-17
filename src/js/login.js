@@ -8,215 +8,53 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var baseUrl = '10.129.235.5:9000';
+var baseUrl = 'http://10.129.235.5:9000';
 
 // 登录面板
-
-var LoginForm = function (_React$Component) {
-    _inherits(LoginForm, _React$Component);
-
-    function LoginForm(props) {
-        _classCallCheck(this, LoginForm);
-
-        var _this = _possibleConstructorReturn(this, (LoginForm.__proto__ || Object.getPrototypeOf(LoginForm)).call(this, props));
-
-        _this.state = {
-            error: {
-                flag: false,
-                msg: ''
-            },
-            account: {
-                username: '',
-                password: ''
-            }
-        };
-
-        _this.submit = _this.submit.bind(_this);
-        // this.handleMsg
-        _this.handleAccount.bind(_this);
-        return _this;
-    }
-
-    _createClass(LoginForm, [{
-        key: 'handleMsg',
-        value: function handleMsg(error) {
-            this.setState({
-                error: error
-            });
-        }
-    }, {
-        key: 'handleAccount',
-        value: function handleAccount(account) {
-            this.setState({
-                account: account
-            });
-        }
-    }, {
-        key: 'submit',
-        value: function submit() {
-            var _this2 = this;
-
-            var loginWay = this.props.headerInfo.title;
-            var account = this.state.account;
-
-            if (loginWay == '账户登录') {
-                if (account.username.length == 0) {
-                    this.setState({ error: { flag: true, msg: '用户名为空' } });
-                    return;
-                }
-                if (account.password.length == 0) {
-                    this.setState({ error: { flag: true, msg: '密码为空' } });
-                    return;
-                }
-                fetch("https://easy-mock.com/mock/5cb31cc7bd0927702544e6ac/example/upload", {
-                    method: 'POST',
-                    body: account
-                }).then(function (Response) {
-                    Response.ok ? location.href = '' : alert('登录失败');
-                });
-            } else {
-                var mobile = this.state.account.user;
-                var code = this.account.password;
-
-                if (mobile.length == 0) {
-                    this.setState({ error: { flag: true, msg: '手机号为空' } });
-                    return;
-                }
-                if (code.length == 0) {
-                    this.setState({ error: { flag: true, msg: '验证码为空' } });
-                    return;
-                }
-
-                fetch("https://easy-mock.com/mock/5cb31cc7bd0927702544e6ac/example/upload", {
-                    method: 'POST',
-                    body: mobile
-                }).then(function (Response) {
-                    Response.ok ? location.href = '' : _this2.setState({ error: { flag: true, msg: '' } });
-                });
-            }
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            return React.createElement(
-                'div',
-                { className: 'login-box' },
-                React.createElement(Header, { headerInfo: this.props.headerInfo }),
-                React.createElement(
-                    'div',
-                    { className: 'panel' },
-                    React.createElement(
-                        'form',
-                        { action: 'javascript:void(0)' },
-                        this.props.loginWay,
-                        React.createElement(Msg, { error: this.state.error }),
-                        React.createElement(
-                            'button',
-                            { className: 'submit', onClick: this.submit },
-                            '\u767B\u5F55'
-                        ),
-                        React.createElement(ThirdLogin, { way: 'register', loginWay: this.props.headerInfo.title })
-                    )
-                )
-            );
-        }
-    }]);
-
-    return LoginForm;
-}(React.Component);
+function LoginForm(props) {
+    return React.createElement(
+        "div",
+        { className: "login-box" },
+        React.createElement(Header, { headerInfo: props.headerInfo }),
+        React.createElement(
+            "div",
+            { className: "panel" },
+            React.createElement(
+                "form",
+                { action: "javascript:void(0)" },
+                props.loginWay,
+                React.createElement(ThirdLogin, { way: "register", loginWay: props.headerInfo.title })
+            )
+        )
+    );
+}
 
 // 注册面板
+function RegisterForm() {
 
+    var headerInfo = {
+        title: '手机注册',
+        display: 'none'
+    };
 
-var RegisterForm = function (_React$Component2) {
-    _inherits(RegisterForm, _React$Component2);
-
-    function RegisterForm() {
-        _classCallCheck(this, RegisterForm);
-
-        var _this3 = _possibleConstructorReturn(this, (RegisterForm.__proto__ || Object.getPrototypeOf(RegisterForm)).call(this));
-
-        _this3.state = {
-            error: {
-                flag: false,
-                msg: ''
-            },
-            account: {
-                mobile: '',
-                password: '',
-                code: ''
-            }
-        };
-
-        _this3.submit = _this3.submit.bind(_this3);
-        return _this3;
-    }
-
-    _createClass(RegisterForm, [{
-        key: 'handleMsg',
-        value: function handleMsg(error) {
-            this.setState({
-                error: error
-            });
-        }
-    }, {
-        key: 'submit',
-        value: function submit() {
-            var _this4 = this;
-
-            var error = this.state.error;
-            if (!error.flag) {
-                fetch('/user/register/' + this.state.account.code, {
-                    method: 'POST',
-                    body: this.state.account
-                }).then(function (response) {
-                    return response.json();
-                }).then(function (data) {
-                    if (!data.flag) {
-                        _this4.setState({ error: { flag: true, msg: data.message } });
-                    } else {
-                        window.location.href = '';
-                    }
-                });
-            }
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            var headerInfo = {
-                title: '手机注册',
-                display: 'none'
-            };
-            return React.createElement(
-                'div',
-                { className: 'register-box' },
-                React.createElement(Header, { headerInfo: headerInfo }),
-                React.createElement(
-                    'div',
-                    { className: 'panel' },
-                    React.createElement(
-                        'form',
-                        { action: 'javascript:void(0)' },
-                        React.createElement(SmsLogin, { render: React.createElement(Password, { handleMsg: this.handleMsg.bind(this) }) }),
-                        React.createElement(Msg, { error: this.state.error }),
-                        React.createElement(
-                            'button',
-                            { className: 'submit', onClick: this.submit, disabled: this.state.error.flag },
-                            '\u6CE8\u518C'
-                        ),
-                        React.createElement(ThirdLogin, { way: 'login' })
-                    )
-                )
-            );
-        }
-    }]);
-
-    return RegisterForm;
-}(React.Component);
+    return React.createElement(
+        "div",
+        { className: "register-box" },
+        React.createElement(Header, { headerInfo: headerInfo }),
+        React.createElement(
+            "div",
+            { className: "panel" },
+            React.createElement(
+                "form",
+                { action: "javascript:void(0)" },
+                React.createElement(SmsLogin, { register: true }),
+                React.createElement(ThirdLogin, { way: "login" })
+            )
+        )
+    );
+}
 
 // 头部组件
-
-
 function Header(props) {
     var headerInfo = props.headerInfo;
 
@@ -225,128 +63,211 @@ function Header(props) {
     }
 
     return React.createElement(
-        'div',
-        { className: 'header' },
+        "div",
+        { className: "header" },
         React.createElement(
-            'span',
-            { className: 'title' },
+            "span",
+            { className: "title" },
             headerInfo.title
         ),
         React.createElement(
-            'a',
-            { href: 'javascript:void(0)', style: { display: headerInfo.display }, onClick: changeLoginWay },
+            "a",
+            { href: "javascript:void(0)",
+                style: { display: headerInfo.display },
+                onClick: changeLoginWay
+            },
             headerInfo.otherLogin,
-            React.createElement('i', { className: 'fa fa-angle-right', 'aria-hidden': 'true' })
+            React.createElement("i", { className: "fa fa-angle-right", "aria-hidden": "true" })
         )
     );
 }
 
 // 短信登录组件
 
-var SmsLogin = function (_React$Component3) {
-    _inherits(SmsLogin, _React$Component3);
+var SmsLogin = function (_React$Component) {
+    _inherits(SmsLogin, _React$Component);
 
     function SmsLogin() {
         _classCallCheck(this, SmsLogin);
 
-        var _this5 = _possibleConstructorReturn(this, (SmsLogin.__proto__ || Object.getPrototypeOf(SmsLogin)).call(this));
+        var _this = _possibleConstructorReturn(this, (SmsLogin.__proto__ || Object.getPrototypeOf(SmsLogin)).call(this));
 
-        _this5.initState = {
+        _this.initState = {
             disabled: true,
             msg: '获取验证码',
             time: 59
         };
 
-        _this5.state = Object.assign({
+        _this.state = Object.assign({
             mobile: '',
-            code: ''
-        }, _this5.initState);
+            code: '',
+            password: '',
+            error: {
+                flag: false,
+                msg: ''
+            }
+        }, _this.initState);
 
-        _this5.handleMobileChange = _this5.handleMobileChange.bind(_this5);
-        _this5.handleCodeChange = _this5.handleCodeChange.bind(_this5);
-        _this5.sendSms = _this5.sendSms.bind(_this5);
-        return _this5;
+        _this.handleMobileChange = _this.handleMobileChange.bind(_this);
+        _this.handleCodeChange = _this.handleCodeChange.bind(_this);
+        _this.sendSms = _this.sendSms.bind(_this);
+        _this.submit = _this.submit.bind(_this);
+        return _this;
     }
 
     _createClass(SmsLogin, [{
-        key: 'handleMobileChange',
+        key: "handleMobileChange",
         value: function handleMobileChange(e) {
             var mobile = e.target.value;
             this.setState({
-                mobile: mobile
+                mobile: mobile,
+                error: { flag: false, msg: '' }
             });
 
             var reg = /^[1][3,4,5,7,8][0-9]{9}$/;
             if (reg.test(mobile)) {
-                this.setState({
-                    code: '手机号正确',
-                    disabled: false
-                });
+                this.setState({ disabled: false });
             } else {
-                this.setState({
-                    code: '',
-                    disabled: true
-                });
+                this.setState({ disabled: true });
             }
         }
     }, {
-        key: 'handleCodeChange',
+        key: "handleCodeChange",
         value: function handleCodeChange(e) {
-            var code = e.target.value;
-            this.setState({ code: code });
-            this.props.handleAccount({
-                username: this.state.mobile,
-                password: this.state.code
-            });
+            this.setState({ code: e.target.value, error: { flag: false, msg: '' } });
         }
     }, {
-        key: 'sendSms',
+        key: "handleMsg",
+        value: function handleMsg(error) {
+            this.setState({ error: error });
+        }
+    }, {
+        key: "handlePassword",
+        value: function handlePassword(password) {
+            this.setState({ password: password, error: { flag: false, msg: '' } });
+        }
+    }, {
+        key: "sendSms",
         value: function sendSms() {
-            var _this6 = this;
+            var _this2 = this;
 
-            fetch('https://easy-mock.com/mock/5ce2de5fd558b7779c32e533/ziwang/user/semdSms/{mobile}', { method: 'POST' }).then(function (response) {
+            var mobile = this.state.mobile;
+            fetch(baseUrl + ("/user/sendsms/" + mobile), { method: 'POST' }).then(function (response) {
                 if (response.ok) {
                     var timer = setInterval(function () {
-                        _this6.setState({
-                            time: _this6.state.time - 1,
-                            msg: _this6.state.time + ' s 后重新获取',
+                        _this2.setState({
+                            time: _this2.state.time - 1,
+                            msg: _this2.state.time + ' s 后重新获取',
                             disabled: true
                         });
 
-                        if (_this6.state.time < 0) {
+                        if (_this2.state.time < 0) {
                             clearInterval(timer);
-                            _this6.setState(Object.assign(_this6.initState, { disabled: false, msg: '重新获取' }));
+                            _this2.setState(Object.assign(_this2.initState, { disabled: false, msg: '重新获取' }));
                         }
                     }, 1000);
                 }
             });
         }
     }, {
-        key: 'render',
+        key: "submit",
+        value: function submit() {
+            var _this3 = this;
+
+            if (this.state.error.flag) return;
+
+            var mobile = this.state.mobile;
+            var code = this.state.code;
+            var password = this.state.password;
+
+            if (mobile.length == 0) {
+                this.setState({ error: { flag: true, msg: '手机号为空' } });
+                return;
+            }
+
+            if (code.length == 0) {
+                this.setState({ error: { flag: true, msg: '验证码为空' } });
+                return;
+            }
+
+            if (this.props.register) {
+                fetch(baseUrl + ("/user/register/" + code), {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({ mobile: mobile, password: password })
+                }).then(function (response) {
+                    return response.json();
+                }).then(function (response) {
+                    if (response.flag) {
+                        var _response$data = response.data,
+                            token = _response$data.token,
+                            name = _response$data.name,
+                            avatar = _response$data.avatar;
+
+                        Cookies.set('TokenKey', token);
+                        Cookies.set('NameKey', name);
+                        Cookies.set('AvatarKey', avatar);
+                        window.location.href = 'index.html';
+                    } else _this3.setState({ error: { flag: true, msg: response.message } });
+                });
+            } else {
+                fetch(baseUrl + ("/user/login/" + code), {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({ mobile: mobile })
+                }).then(function (response) {
+                    return response.json();
+                }).then(function (response) {
+                    if (response.flag) {
+                        var _response$data2 = response.data,
+                            token = _response$data2.token,
+                            name = _response$data2.name,
+                            avatar = _response$data2.avatar;
+
+                        Cookies.set('TokenKey', token);
+                        Cookies.set('NameKey', name);
+                        Cookies.set('AvatarKey', avatar);
+                        window.location.href = 'index.html';
+                    } else _this3.setState({ error: { flag: true, msg: response.message } });
+                });
+            }
+        }
+    }, {
+        key: "render",
         value: function render() {
             return React.createElement(
-                'div',
-                { className: 'sms' },
+                "div",
+                { className: "sms" },
                 React.createElement(
-                    'div',
-                    { className: 'mobile' },
+                    "div",
+                    { className: "mobile" },
                     React.createElement(
-                        'label',
-                        { htmlFor: 'mobile' },
-                        '+86'
+                        "label",
+                        { htmlFor: "mobile" },
+                        "+86"
                     ),
-                    React.createElement('input', { type: 'text', id: 'mobile', name: 'mobile', placeholder: '\u624B\u673A\u53F7\u7801', onChange: this.handleMobileChange })
+                    React.createElement("input", { type: "text", id: "mobile", name: "mobile", placeholder: "\u624B\u673A\u53F7\u7801", onChange: this.handleMobileChange, autoComplete: "off" })
                 ),
-                this.props.render,
+                this.props.register ? React.createElement(Password, { handleMsg: this.handleMsg.bind(this), handlePassword: this.handlePassword.bind(this) }) : '',
                 React.createElement(
-                    'div',
-                    { className: 'code' },
-                    React.createElement('input', { type: 'text', id: 'code', name: 'code', placeholder: '\u9A8C\u8BC1\u7801', onChange: this.handleCodeChange }),
+                    "div",
+                    { className: "code" },
+                    React.createElement("input", { type: "text", id: "code", name: "code", placeholder: "\u9A8C\u8BC1\u7801", onChange: this.handleCodeChange, autoComplete: "off" }),
                     React.createElement(
-                        'button',
+                        "button",
                         { className: this.state.disabled ? "disabled" : "", disabled: this.state.disabled, onClick: this.sendSms },
                         this.state.msg
                     )
+                ),
+                React.createElement(Msg, { error: this.state.error }),
+                React.createElement(
+                    "button",
+                    { className: "submit", onClick: this.submit },
+                    this.props.register ? '注册' : '登录'
                 )
             );
         }
@@ -358,45 +279,112 @@ var SmsLogin = function (_React$Component3) {
 //账号登录组件
 
 
-var AccountLogin = function (_React$Component4) {
-    _inherits(AccountLogin, _React$Component4);
+var AccountLogin = function (_React$Component2) {
+    _inherits(AccountLogin, _React$Component2);
 
     function AccountLogin() {
         _classCallCheck(this, AccountLogin);
 
-        return _possibleConstructorReturn(this, (AccountLogin.__proto__ || Object.getPrototypeOf(AccountLogin)).call(this));
+        var _this4 = _possibleConstructorReturn(this, (AccountLogin.__proto__ || Object.getPrototypeOf(AccountLogin)).call(this));
+
+        _this4.state = {
+            username: '',
+            password: '',
+            error: {
+                flag: false,
+                msg: ''
+            }
+        };
+
+        _this4.handleInputChange = _this4.handleInputChange.bind(_this4);
+        _this4.submit = _this4.submit.bind(_this4);
+        return _this4;
     }
 
     _createClass(AccountLogin, [{
-        key: 'render',
+        key: "handleInputChange",
+        value: function handleInputChange(e) {
+            var id = e.target.id;
+            var value = e.target.value;
+
+            this.setState(_defineProperty({}, id, value));
+        }
+    }, {
+        key: "submit",
+        value: function submit() {
+            var _this5 = this;
+
+            var username = this.state.username;
+            var password = this.state.password;
+
+            if (username.length == 0) {
+                this.setState({ error: { flag: true, msg: '用户名为空' } });
+                return;
+            }
+
+            if (password.length == 0) {
+                this.setState({ error: { flag: true, msg: '密码为空' } });
+                return;
+            }
+
+            fetch(baseUrl + "/user/login", {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify({ username: username, password: password })
+            }).then(function (response) {
+                return response.json();
+            }).then(function (response) {
+                if (response.flag) {
+                    var _response$data3 = response.data,
+                        token = _response$data3.token,
+                        name = _response$data3.name,
+                        avatar = _response$data3.avatar;
+
+                    Cookies.set('TokenKey', token);
+                    Cookies.set('NameKey', name);
+                    Cookies.set('AvatarKey', avatar);
+                    window.location.href = 'index.html';
+                } else _this5.setState({ error: { flag: true, msg: response.message } });
+            });
+        }
+    }, {
+        key: "render",
         value: function render() {
             return React.createElement(
-                'div',
-                { className: 'account' },
+                "div",
+                { className: "account" },
                 React.createElement(
-                    'div',
-                    { className: 'mobile' },
+                    "div",
+                    { className: "mobile" },
                     React.createElement(
-                        'label',
-                        { htmlFor: 'account' },
-                        React.createElement('i', { className: 'fa fa-user-o', 'aria-hidden': 'true' })
+                        "label",
+                        { htmlFor: "account" },
+                        React.createElement("i", { className: "fa fa-user-o", "aria-hidden": "true" })
                     ),
-                    React.createElement('input', { type: 'text', id: 'account', placeholder: '\u624B\u673A/\u90AE\u7BB1/\u8D44\u7F51\u8D26\u53F7' })
+                    React.createElement("input", { type: "text", id: "username", placeholder: "\u624B\u673A/\u90AE\u7BB1/\u8D44\u7F51\u8D26\u53F7", onChange: this.handleInputChange, autoComplete: "off" })
                 ),
                 React.createElement(
-                    'div',
-                    { className: 'password' },
+                    "div",
+                    { className: "password" },
                     React.createElement(
-                        'label',
-                        { htmlFor: 'password' },
-                        React.createElement('i', { className: 'fa fa-lock', 'aria-hidden': 'true' })
+                        "label",
+                        { htmlFor: "password" },
+                        React.createElement("i", { className: "fa fa-lock", "aria-hidden": "true" })
                     ),
-                    React.createElement('input', { type: 'password', id: 'password', placeholder: '\u767B\u5F55\u5BC6\u7801' })
+                    React.createElement("input", { type: "password", id: "password", placeholder: "\u767B\u5F55\u5BC6\u7801", onChange: this.handleInputChange, autoComplete: "off" })
                 ),
                 React.createElement(
-                    'a',
-                    { href: '#' },
-                    '\u5FD8\u8BB0\u5BC6\u7801'
+                    "a",
+                    { href: "#" },
+                    "\u5FD8\u8BB0\u5BC6\u7801"
+                ),
+                React.createElement(Msg, { error: this.state.error }),
+                React.createElement(
+                    "button",
+                    { className: "submit", onClick: this.submit },
+                    "\u767B\u5F55"
                 )
             );
         }
@@ -408,35 +396,37 @@ var AccountLogin = function (_React$Component4) {
 // 密码框组件
 
 
-var Password = function (_React$Component5) {
-    _inherits(Password, _React$Component5);
+var Password = function (_React$Component3) {
+    _inherits(Password, _React$Component3);
 
     function Password() {
         _classCallCheck(this, Password);
 
-        var _this8 = _possibleConstructorReturn(this, (Password.__proto__ || Object.getPrototypeOf(Password)).call(this));
+        var _this6 = _possibleConstructorReturn(this, (Password.__proto__ || Object.getPrototypeOf(Password)).call(this));
 
-        _this8.state = {
+        _this6.state = {
             password: '',
             repassword: ''
         };
 
-        _this8.handleInputChange = _this8.handleInputChange.bind(_this8);
-        _this8.handlePasswordBlur = _this8.handlePasswordBlur.bind(_this8);
-        _this8.handleRepasswordBlur = _this8.handleRepasswordBlur.bind(_this8);
-        return _this8;
+        _this6.handleInputChange = _this6.handleInputChange.bind(_this6);
+        _this6.handlePasswordBlur = _this6.handlePasswordBlur.bind(_this6);
+        _this6.handleRepasswordBlur = _this6.handleRepasswordBlur.bind(_this6);
+        return _this6;
     }
 
     _createClass(Password, [{
-        key: 'handleInputChange',
+        key: "handleInputChange",
         value: function handleInputChange(e) {
             var name = e.target.name;
             var value = e.target.value;
 
             this.setState(_defineProperty({}, name, value));
+
+            this.props.handlePassword(this.state.repassword);
         }
     }, {
-        key: 'handlePasswordBlur',
+        key: "handlePasswordBlur",
         value: function handlePasswordBlur(e) {
             var password = e.target.value;
 
@@ -467,48 +457,50 @@ var Password = function (_React$Component5) {
             this.props.handleMsg({ flag: false, msg: "" });
         }
     }, {
-        key: 'handleRepasswordBlur',
+        key: "handleRepasswordBlur",
         value: function handleRepasswordBlur(e) {
             var repassword = e.target.value;
             var password = this.state.password;
 
             repassword !== password ? this.props.handleMsg({ flag: true, msg: "两次密码不一致" }) : this.props.handleMsg({ flag: false, msg: "" });
+
+            this.props.handlePassword(repassword);
         }
     }, {
-        key: 'render',
+        key: "render",
         value: function render() {
             return React.createElement(
-                'div',
+                "div",
                 null,
                 React.createElement(
-                    'div',
-                    { className: 'password' },
+                    "div",
+                    { className: "password" },
                     React.createElement(
-                        'label',
-                        { htmlFor: 'password' },
-                        React.createElement('i', { className: 'fa fa-lock', 'aria-hidden': 'true' })
+                        "label",
+                        { htmlFor: "password" },
+                        React.createElement("i", { className: "fa fa-lock", "aria-hidden": "true" })
                     ),
-                    React.createElement('input', {
-                        type: 'password',
-                        id: 'password',
-                        name: 'password',
-                        placeholder: '\u5BC6\u7801(6-16\u4F4D\u5B57\u6BCD\u3001\u6570\u5B57\u548C\u7B26\u53F7)',
+                    React.createElement("input", {
+                        type: "password",
+                        id: "password",
+                        name: "password",
+                        placeholder: "\u5BC6\u7801(6-16\u4F4D\u5B57\u6BCD\u3001\u6570\u5B57\u548C\u7B26\u53F7)",
                         onChange: this.handleInputChange,
                         onBlur: this.handlePasswordBlur })
                 ),
                 React.createElement(
-                    'div',
-                    { className: 'password' },
+                    "div",
+                    { className: "password" },
                     React.createElement(
-                        'label',
-                        { htmlFor: 'repassword' },
-                        React.createElement('i', { className: 'fa fa-lock', 'aria-hidden': 'true' })
+                        "label",
+                        { htmlFor: "repassword" },
+                        React.createElement("i", { className: "fa fa-lock", "aria-hidden": "true" })
                     ),
-                    React.createElement('input', {
-                        type: 'password',
-                        id: 'repassword',
-                        name: 'repassword',
-                        placeholder: '\u786E\u8BA4\u5BC6\u7801',
+                    React.createElement("input", {
+                        type: "password",
+                        id: "repassword",
+                        name: "repassword",
+                        placeholder: "\u786E\u8BA4\u5BC6\u7801",
                         onChange: this.handleInputChange,
                         onBlur: this.handleRepasswordBlur })
                 )
@@ -526,9 +518,9 @@ function Msg(props) {
     var error = props.error;
     if (error.flag) {
         return React.createElement(
-            'div',
-            { className: 'msg' },
-            React.createElement('i', { className: 'fa fa-exclamation-circle', 'aria-hidden': 'true' }),
+            "div",
+            { className: "msg" },
+            React.createElement("i", { className: "fa fa-exclamation-circle", "aria-hidden": "true" }),
             error.msg
         );
     } else return null;
@@ -547,21 +539,21 @@ function ThirdLogin(props) {
     }
 
     return React.createElement(
-        'div',
-        { className: 'third-login' },
+        "div",
+        { className: "third-login" },
         React.createElement(
-            'div',
-            { className: 'other', style: { display: way.display } },
+            "div",
+            { className: "other", style: { display: way.display } },
             React.createElement(
-                'span',
+                "span",
                 null,
-                '\u5176\u4ED6\u65B9\u5F0F\uFF1A'
+                "\u5176\u4ED6\u65B9\u5F0F\uFF1A"
             ),
-            React.createElement('img', { src: 'img/third-login.png', alt: '' })
+            React.createElement("img", { src: "img/third-login.png", alt: "" })
         ),
         React.createElement(
-            'a',
-            { href: 'javascript:void(0)', onClick: function onClick() {
+            "a",
+            { href: "javascript:void(0)", onClick: function onClick() {
                     ReactDOM.render(way.render, document.getElementById("form"));
                 } },
             way.way
@@ -570,12 +562,12 @@ function ThirdLogin(props) {
 }
 
 var smsLogin = {
-    loginWay: React.createElement(SmsLogin, { handleAccount: this.handleAccount }),
+    loginWay: React.createElement(SmsLogin, null),
     headerInfo: { title: '手机快捷登录', otherLogin: '账户登录' }
 };
 
 var accountLogin = {
-    loginWay: React.createElement(AccountLogin, { handleAccount: this.handleAccount }),
+    loginWay: React.createElement(AccountLogin, null),
     headerInfo: { title: '账户登录', otherLogin: '手机快捷登录' }
 
     // 初始化渲染登录面板

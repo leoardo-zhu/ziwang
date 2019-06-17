@@ -27,292 +27,297 @@
                     <img src="img/carousel.png" alt="轮播图">
                 </div>
                 <!-- 分类搜索 -->
-                <div class="query">
-                    <div class="row">
-                        <div class="dt">
-                            技术领域：
+                <div id="category">
+                    <!-- <div class="query">
+                        <div class="row">
+                            <div class="dt">
+                                技术领域：
+                            </div>
+                            <div class="dd">
+                                <ul>
+                                    <li><a href="#" class="active">全部</a></li>
+                                    <li><a href="#">移动开发</a></li>
+                                    <li><a href="#">开发技术</a></li>
+                                    <li><a href="#">课程资源</a></li>
+                                    <li><a href="#">网络技术</a></li>
+                                    <li><a href="#">操作系统</a></li>
+                                    <li><a href="#">安全技术</a></li>
+                                    <li><a href="#">数据库</a></li>
+                                    <li><a href="#">行业</a></li>
+                                    <li><a href="#">服务器应用</a></li>
+                                    <li><a href="#">存储 </a></li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="dd">
-                            <ul>
-                                <li><a href="#" class="active">全部</a></li>
-                                <li><a href="#">移动开发</a></li>
-                                <li><a href="#">开发技术</a></li>
-                                <li><a href="#">课程资源</a></li>
-                                <li><a href="#">网络技术</a></li>
-                                <li><a href="#">操作系统</a></li>
-                                <li><a href="#">安全技术</a></li>
-                                <li><a href="#">数据库</a></li>
-                                <li><a href="#">行业</a></li>
-                                <li><a href="#">服务器应用</a></li>
-                                <li><a href="#">存储 </a></li>
-                            </ul>
+                        <div class="row">
+                            <div class="dt">
+                                资源类型：
+                            </div>
+                            <div class="dd">
+                                <ul>
+                                    <li><a href="#" class="active">全部</a></li>
+                                    <li><a href="#">文档类</a></li>
+                                    <li><a href="#">工具类</a></li>
+                                    <li><a href="#">代码类</a></li>
+                                    <li><a href="#">其他</a></li>
+    
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="dt">
+                                搜索：
+                            </div>
+                            <div class="dd">
+                                <input type="text" id="search">
+                                <button>搜索</button>
+                            </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="dt">
-                            资源类型：
-                        </div>
-                        <div class="dd">
-                            <ul>
-                                <li><a href="#" class="active">全部</a></li>
-                                <li><a href="#">文档类</a></li>
-                                <li><a href="#">工具类</a></li>
-                                <li><a href="#">代码类</a></li>
-                                <li><a href="#">其他</a></li>
-
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="dt">
-                            搜索：
-                        </div>
-                        <div class="dd">
-                            <input type="text" id="search">
-                            <button>搜索</button>
-                        </div>
-                    </div>
-                </div>
-                <!-- 搜索的条件标签 -->
-                <div class="condition">
-                    <span>已选标签：</span>
-                    <ul>
-                        <li>
-                            移动开发
-                            <i class="fa fa-times-circle"></i>
-                        </li>
-                        <li>
-                            安卓
-                            <i class="fa fa-times-circle"></i>
-                        </li>
-                    </ul>
+                    <!-- 搜索的条件标签 
+                    <div class="condition">
+                        <span>已选标签：</span>
+                        <ul>
+                            <li>
+                                移动开发
+                                <i class="fa fa-times-circle"></i>
+                            </li>
+                            <li>
+                                安卓
+                                <i class="fa fa-times-circle"></i>
+                            </li>
+                        </ul>
+                    </div> -->
                 </div>
                 <!-- 首页资源展示 -->
-                <div class="resources">
-                    <div class="title">
-                        <a href="#" class="active">最新上传</a>
-                        <a href="#">最多下载</a>
+                <div class="resources" id="resources">
+                    <div class="resources-list">
+                        <div class="title">
+                            <a href="#" class="active">最新上传</a>
+                            <a href="#">最多下载</a>
+                        </div>
+
+                        <ul class="list">
+                            <li>
+                                <div class="dt">
+                                    <a href="#">
+                                        <img src="img/zip.svg" alt="文件类型">
+                                    </a>
+                                </div>
+                                <div class="dd">
+                                    <a href="#" class="title">资网前端核心代码</a>
+                                    <div class="tags">
+                                        <ul>
+                                            <li>
+                                                JavaScript
+                                            </li>
+                                            <li>
+                                                Java
+                                            </li>
+                                            <li>
+                                                PHP
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="detail">
+                                    <span><i class="fa fa-cloud-download"></i> 100</span>
+                                    <span>2019-12-12 15:28</span>
+                                    <span>来自：<a href="">资网前端工程师</a></span>
+                                </div>
+                                <div class="price">
+                                    免费
+                                </div>
+                            </li>
+                            <li>
+                                <div class="dt">
+                                    <a href="#">
+                                        <img src="img/zip.svg" alt="文件类型">
+                                    </a>
+                                </div>
+                                <div class="dd">
+                                    <a href="#" class="title">资网前端核心代码</a>
+                                    <div class="tags">
+                                        <ul>
+                                            <li>
+                                                JavaScript
+                                            </li>
+                                            <li>
+                                                Java
+                                            </li>
+                                            <li>
+                                                PHP
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="detail">
+                                    <span><i class="fa fa-cloud-download"></i> 100</span>
+                                    <span>2019-12-12 15:28</span>
+                                    <span>来自：<a href="">资网前端工程师</a></span>
+                                </div>
+                                <div class="price">
+                                    免费
+                                </div>
+                            </li>
+                            <li>
+                                <div class="dt">
+                                    <a href="#">
+                                        <img src="img/zip.svg" alt="文件类型">
+                                    </a>
+                                </div>
+                                <div class="dd">
+                                    <a href="#" class="title">资网前端核心代码</a>
+                                    <div class="tags">
+                                        <ul>
+                                            <li>
+                                                JavaScript
+                                            </li>
+                                            <li>
+                                                Java
+                                            </li>
+                                            <li>
+                                                PHP
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="detail">
+                                    <span><i class="fa fa-cloud-download"></i> 100</span>
+                                    <span>2019-12-12 15:28</span>
+                                    <span>来自：<a href="">资网前端工程师</a></span>
+                                </div>
+                                <div class="price">
+                                    免费
+                                </div>
+                            </li>
+                            <li>
+                                <div class="dt">
+                                    <a href="#">
+                                        <img src="img/zip.svg" alt="文件类型">
+                                    </a>
+                                </div>
+                                <div class="dd">
+                                    <a href="#" class="title">资网前端核心代码</a>
+                                    <div class="tags">
+                                        <ul>
+                                            <li>
+                                                JavaScript
+                                            </li>
+                                            <li>
+                                                Java
+                                            </li>
+                                            <li>
+                                                PHP
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="detail">
+                                    <span><i class="fa fa-cloud-download"></i> 100</span>
+                                    <span>2019-12-12 15:28</span>
+                                    <span>来自：<a href="">资网前端工程师</a></span>
+                                </div>
+                                <div class="price">
+                                    免费
+                                </div>
+                            </li>
+                            <li>
+                                <div class="dt">
+                                    <a href="#">
+                                        <img src="img/zip.svg" alt="文件类型">
+                                    </a>
+                                </div>
+                                <div class="dd">
+                                    <a href="#" class="title">资网前端核心代码</a>
+                                    <div class="tags">
+                                        <ul>
+                                            <li>
+                                                JavaScript
+                                            </li>
+                                            <li>
+                                                Java
+                                            </li>
+                                            <li>
+                                                PHP
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="detail">
+                                    <span><i class="fa fa-cloud-download"></i> 100</span>
+                                    <span>2019-12-12 15:28</span>
+                                    <span>来自：<a href="">资网前端工程师</a></span>
+                                </div>
+                                <div class="price">
+                                    免费
+                                </div>
+                            </li>
+                            <li>
+                                <div class="dt">
+                                    <a href="#">
+                                        <img src="img/zip.svg" alt="文件类型">
+                                    </a>
+                                </div>
+                                <div class="dd">
+                                    <a href="#" class="title">资网前端核心代码</a>
+                                    <div class="tags">
+                                        <ul>
+                                            <li>
+                                                JavaScript
+                                            </li>
+                                            <li>
+                                                Java
+                                            </li>
+                                            <li>
+                                                PHP
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="detail">
+                                    <span><i class="fa fa-cloud-download"></i> 100</span>
+                                    <span>2019-12-12 15:28</span>
+                                    <span>来自：<a href="">资网前端工程师</a></span>
+                                </div>
+                                <div class="price">
+                                    免费
+                                </div>
+                            </li>
+                            <li>
+                                <div class="dt">
+                                    <a href="#">
+                                        <img src="img/zip.svg" alt="文件类型">
+                                    </a>
+                                </div>
+                                <div class="dd">
+                                    <a href="#" class="title">资网前端核心代码</a>
+                                    <div class="tags">
+                                        <ul>
+                                            <li>
+                                                JavaScript
+                                            </li>
+                                            <li>
+                                                Java
+                                            </li>
+                                            <li>
+                                                PHP
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="detail">
+                                    <span><i class="fa fa-cloud-download"></i> 100</span>
+                                    <span>2019-12-12 15:28</span>
+                                    <span>来自：<a href="">资网前端工程师</a></span>
+                                </div>
+                                <div class="price">
+                                    免费
+                                </div>
+                            </li>
+                        </ul>
                     </div>
 
-                    <ul class="list">
-                        <li>
-                            <div class="dt">
-                                <a href="#">
-                                    <img src="img/zip.svg" alt="文件类型">
-                                </a>
-                            </div>
-                            <div class="dd">
-                                <a href="#" class="title">资网前端核心代码</a>
-                                <div class="tags">
-                                    <ul>
-                                        <li>
-                                            JavaScript
-                                        </li>
-                                        <li>
-                                            Java
-                                        </li>
-                                        <li>
-                                            PHP
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="detail">
-                                <span><i class="fa fa-cloud-download"></i> 100</span>
-                                <span>2019-12-12 15:28</span>
-                                <span>来自：<a href="">资网前端工程师</a></span>
-                            </div>
-                            <div class="price">
-                                免费
-                            </div>
-                        </li>
-                        <li>
-                            <div class="dt">
-                                <a href="#">
-                                    <img src="img/zip.svg" alt="文件类型">
-                                </a>
-                            </div>
-                            <div class="dd">
-                                <a href="#" class="title">资网前端核心代码</a>
-                                <div class="tags">
-                                    <ul>
-                                        <li>
-                                            JavaScript
-                                        </li>
-                                        <li>
-                                            Java
-                                        </li>
-                                        <li>
-                                            PHP
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="detail">
-                                <span><i class="fa fa-cloud-download"></i> 100</span>
-                                <span>2019-12-12 15:28</span>
-                                <span>来自：<a href="">资网前端工程师</a></span>
-                            </div>
-                            <div class="price">
-                                免费
-                            </div>
-                        </li>
-                        <li>
-                            <div class="dt">
-                                <a href="#">
-                                    <img src="img/zip.svg" alt="文件类型">
-                                </a>
-                            </div>
-                            <div class="dd">
-                                <a href="#" class="title">资网前端核心代码</a>
-                                <div class="tags">
-                                    <ul>
-                                        <li>
-                                            JavaScript
-                                        </li>
-                                        <li>
-                                            Java
-                                        </li>
-                                        <li>
-                                            PHP
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="detail">
-                                <span><i class="fa fa-cloud-download"></i> 100</span>
-                                <span>2019-12-12 15:28</span>
-                                <span>来自：<a href="">资网前端工程师</a></span>
-                            </div>
-                            <div class="price">
-                                免费
-                            </div>
-                        </li>
-                        <li>
-                            <div class="dt">
-                                <a href="#">
-                                    <img src="img/zip.svg" alt="文件类型">
-                                </a>
-                            </div>
-                            <div class="dd">
-                                <a href="#" class="title">资网前端核心代码</a>
-                                <div class="tags">
-                                    <ul>
-                                        <li>
-                                            JavaScript
-                                        </li>
-                                        <li>
-                                            Java
-                                        </li>
-                                        <li>
-                                            PHP
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="detail">
-                                <span><i class="fa fa-cloud-download"></i> 100</span>
-                                <span>2019-12-12 15:28</span>
-                                <span>来自：<a href="">资网前端工程师</a></span>
-                            </div>
-                            <div class="price">
-                                免费
-                            </div>
-                        </li>
-                        <li>
-                            <div class="dt">
-                                <a href="#">
-                                    <img src="img/zip.svg" alt="文件类型">
-                                </a>
-                            </div>
-                            <div class="dd">
-                                <a href="#" class="title">资网前端核心代码</a>
-                                <div class="tags">
-                                    <ul>
-                                        <li>
-                                            JavaScript
-                                        </li>
-                                        <li>
-                                            Java
-                                        </li>
-                                        <li>
-                                            PHP
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="detail">
-                                <span><i class="fa fa-cloud-download"></i> 100</span>
-                                <span>2019-12-12 15:28</span>
-                                <span>来自：<a href="">资网前端工程师</a></span>
-                            </div>
-                            <div class="price">
-                                免费
-                            </div>
-                        </li>
-                        <li>
-                            <div class="dt">
-                                <a href="#">
-                                    <img src="img/zip.svg" alt="文件类型">
-                                </a>
-                            </div>
-                            <div class="dd">
-                                <a href="#" class="title">资网前端核心代码</a>
-                                <div class="tags">
-                                    <ul>
-                                        <li>
-                                            JavaScript
-                                        </li>
-                                        <li>
-                                            Java
-                                        </li>
-                                        <li>
-                                            PHP
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="detail">
-                                <span><i class="fa fa-cloud-download"></i> 100</span>
-                                <span>2019-12-12 15:28</span>
-                                <span>来自：<a href="">资网前端工程师</a></span>
-                            </div>
-                            <div class="price">
-                                免费
-                            </div>
-                        </li>
-                        <li>
-                            <div class="dt">
-                                <a href="#">
-                                    <img src="img/zip.svg" alt="文件类型">
-                                </a>
-                            </div>
-                            <div class="dd">
-                                <a href="#" class="title">资网前端核心代码</a>
-                                <div class="tags">
-                                    <ul>
-                                        <li>
-                                            JavaScript
-                                        </li>
-                                        <li>
-                                            Java
-                                        </li>
-                                        <li>
-                                            PHP
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="detail">
-                                <span><i class="fa fa-cloud-download"></i> 100</span>
-                                <span>2019-12-12 15:28</span>
-                                <span>来自：<a href="">资网前端工程师</a></span>
-                            </div>
-                            <div class="price">
-                                免费
-                            </div>
-                        </li>
-                    </ul>
 
                 </div>
             </div>
@@ -325,7 +330,7 @@
                     <img src="img/ad2.png" alt="广告2">
                 </div>
                 <!-- 用户模块 -->
-                <div class="user-module">
+                <div class="user-module" id="user-module">
                     <!-- <div class="user">
                         <div class="photo">
                             <img src="img/user-photo.png" alt="用户头像">
@@ -341,7 +346,7 @@
                     <a href="#" class="upload">上传资源</a> -->
                 </div>
                 <!-- 热门资源 -->
-                <div class="hot-resources">
+                <div class="hot-resources" id="hot-resources">
                     <h3>热门资源</h3>
                     <ul>
                         <li>
@@ -439,9 +444,10 @@
     </footer>
 </body>
 
-<script src="js/react.js"></script>
-<script src="js/react-dom.js"></script>
-<script src="js/js.cookie.min.js"></script>
+<script src="plugin/react.js"></script>
+<script src="plugin/react-dom.js"></script>
+<script src="plugin/js.cookie.min.js"></script>
 <script src="js/header.js"></script>
 <script src="js/index.js"></script>
+
 </html>

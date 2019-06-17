@@ -1,160 +1,40 @@
-const baseUrl = '10.129.235.5:9000'
+const baseUrl = 'http://10.129.235.5:9000'
 
 // 登录面板
-class LoginForm extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            error: {
-                flag: false,
-                msg: ''
-            },
-            account: {
-                username: '',
-                password: ''
-            }
-        }
-
-        this.submit = this.submit.bind(this)
-        // this.handleMsg
-        this.handleAccount.bind(this)
-    }
-
-    handleMsg(error) {
-        this.setState({
-            error: error
-        })
-    }
-
-    handleAccount(account) {
-        this.setState({
-            account: account
-        })
-    }
-
-    submit() {
-        const loginWay = this.props.headerInfo.title
-        const account = this.state.account
-
-
-        if (loginWay == '账户登录') {
-            if (account.username.length == 0) {
-                this.setState({ error: { flag: true, msg: '用户名为空' } })
-                return
-            }
-            if (account.password.length == 0) {
-                this.setState({ error: { flag: true, msg: '密码为空' } })
-                return
-            }
-            fetch("https://easy-mock.com/mock/5cb31cc7bd0927702544e6ac/example/upload",
-                {
-                    method: 'POST',
-                    body: account
-                }).then(Response => {
-                    Response.ok ? location.href = '' : alert('登录失败')
-                })
-        } else {
-            const mobile = this.state.account.user
-            const code = this.account.password
-
-            if (mobile.length == 0) {
-                this.setState({ error: { flag: true, msg: '手机号为空' } })
-                return
-            }
-            if (code.length == 0) {
-                this.setState({ error: { flag: true, msg: '验证码为空' } })
-                return
-            }
-
-            fetch("https://easy-mock.com/mock/5cb31cc7bd0927702544e6ac/example/upload",
-                {
-                    method: 'POST',
-                    body: mobile
-                }).then(Response => {
-                    Response.ok ? location.href = '' : this.setState({ error: { flag: true, msg: '' } })
-                })
-        }
-
-    }
-
-    render() {
-        return (
-            <div className="login-box">
-                <Header headerInfo={this.props.headerInfo} />
-                <div className="panel">
-                    <form action="javascript:void(0)">
-                        {this.props.loginWay}
-                        <Msg error={this.state.error} />
-                        <button className="submit" onClick={this.submit}>登录</button>
-                        <ThirdLogin way="register" loginWay={this.props.headerInfo.title} />
-                    </form>
-                </div>
+function LoginForm(props) {
+    return (
+        <div className="login-box">
+            <Header headerInfo={props.headerInfo} />
+            <div className="panel">
+                <form action="javascript:void(0)">
+                    {props.loginWay}
+                    <ThirdLogin way="register" loginWay={props.headerInfo.title} />
+                </form>
             </div>
-        )
-    }
+        </div>
+    )
 }
 
 // 注册面板
-class RegisterForm extends React.Component {
-    constructor() {
-        super()
-        this.state = {
-            error: {
-                flag: false,
-                msg: ''
-            },
-            account: {
-                mobile: '',
-                password: '',
-                code: ''
-            }
-        }
+function RegisterForm() {
 
-        this.submit = this.submit.bind(this)
+    const headerInfo = {
+        title: '手机注册',
+        display: 'none'
     }
 
-    handleMsg(error) {
-        this.setState({
-            error: error
-        })
-    }
-
-    submit() {
-        let error = this.state.error
-        if (!error.flag) {
-            fetch(`/user/register/${this.state.account.code}`, {
-                method: 'POST',
-                body: this.state.account
-            }).then(response => response.json())
-                .then(data => {
-                    if (!data.flag) {
-                        this.setState({ error: { flag: true, msg: data.message } })
-                    } else {
-                        window.location.href = ''
-                    }
-                })
-        }
-    }
-
-    render() {
-        const headerInfo = {
-            title: '手机注册',
-            display: 'none'
-        }
-        return (
-            <div className="register-box">
-                <Header headerInfo={headerInfo} />
-                <div className="panel">
-                    <form action="javascript:void(0)">
-                        <SmsLogin render={<Password handleMsg={this.handleMsg.bind(this)} />} />
-                        <Msg error={this.state.error} />
-                        <button className="submit" onClick={this.submit} disabled={this.state.error.flag}>注册</button>
-                        <ThirdLogin way="login" />
-                    </form>
-                </div>
+    return (
+        <div className="register-box">
+            <Header headerInfo={headerInfo} />
+            <div className="panel">
+                <form action="javascript:void(0)">
+                    <SmsLogin register={true} />
+                    <ThirdLogin way="login" />
+                </form>
             </div>
-        )
-    }
+        </div>
+    )
+
 }
 
 // 头部组件
@@ -177,7 +57,10 @@ function Header(props) {
     return (
         <div className="header">
             <span className="title">{headerInfo.title}</span>
-            <a href="javascript:void(0)" style={{ display: headerInfo.display }} onClick={changeLoginWay}>
+            <a href="javascript:void(0)"
+                style={{ display: headerInfo.display }}
+                onClick={changeLoginWay}
+            >
                 {headerInfo.otherLogin}
                 <i className="fa fa-angle-right" aria-hidden="true"></i>
             </a>
@@ -199,45 +82,50 @@ class SmsLogin extends React.Component {
         this.state = Object.assign({
             mobile: '',
             code: '',
+            password: '',
+            error: {
+                flag: false,
+                msg: ''
+            }
         }, this.initState)
 
         this.handleMobileChange = this.handleMobileChange.bind(this)
         this.handleCodeChange = this.handleCodeChange.bind(this)
         this.sendSms = this.sendSms.bind(this)
+        this.submit = this.submit.bind(this)
     }
 
     handleMobileChange(e) {
         const mobile = e.target.value
         this.setState({
-            mobile: mobile
+            mobile: mobile,
+            error: { flag: false, msg: '' }
         })
 
         let reg = /^[1][3,4,5,7,8][0-9]{9}$/
         if (reg.test(mobile)) {
-            this.setState({
-                code: '手机号正确',
-                disabled: false
-            })
+            this.setState({ disabled: false })
         }
         else {
-            this.setState({
-                code: '',
-                disabled: true
-            })
+            this.setState({ disabled: true })
         }
     }
 
     handleCodeChange(e) {
-        const code = e.target.value
-        this.setState({ code: code })
-        this.props.handleAccount({
-            username: this.state.mobile,
-            password: this.state.code
-        })
+        this.setState({ code: e.target.value, error: { flag: false, msg: '' } })
+    }
+
+    handleMsg(error) {
+        this.setState({ error: error })
+    }
+
+    handlePassword(password) {
+        this.setState({ password: password, error: { flag: false, msg: '' } })
     }
 
     sendSms() {
-        fetch(`https://easy-mock.com/mock/5ce2de5fd558b7779c32e533/ziwang/user/semdSms/{mobile}`, { method: 'POST' })
+        const mobile = this.state.mobile
+        fetch(baseUrl + `/user/sendsms/${mobile}`, { method: 'POST' })
             .then(response => {
                 if (response.ok) {
                     let timer = setInterval(() => {
@@ -256,19 +144,83 @@ class SmsLogin extends React.Component {
             })
     }
 
+    submit() {
+        if (this.state.error.flag) return
+
+        const mobile = this.state.mobile
+        const code = this.state.code
+        const password = this.state.password
+
+        if (mobile.length == 0) {
+            this.setState({ error: { flag: true, msg: '手机号为空' } })
+            return
+        }
+
+        if (code.length == 0) {
+            this.setState({ error: { flag: true, msg: '验证码为空' } })
+            return
+        }
+
+        if (this.props.register) {
+            fetch(baseUrl + `/user/register/${code}`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({ mobile: mobile, password: password })
+                })
+                .then(response => response.json())
+                .then(response => {
+                    if (response.flag) {
+                        const { token, name, avatar } = response.data
+                        Cookies.set('TokenKey', token)
+                        Cookies.set('NameKey', name)
+                        Cookies.set('AvatarKey', avatar)
+                        window.location.href = 'index.html'
+                    }
+                    else this.setState({ error: { flag: true, msg: response.message } })
+                })
+        } else {
+            fetch(baseUrl + `/user/login/${code}`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({ mobile: mobile })
+                })
+                .then(response => response.json())
+                .then(response => {
+                    if (response.flag) {
+                        const { token, name, avatar } = response.data
+                        Cookies.set('TokenKey', token)
+                        Cookies.set('NameKey', name)
+                        Cookies.set('AvatarKey', avatar)
+                        window.location.href = 'index.html'
+                    }
+                    else this.setState({ error: { flag: true, msg: response.message } })
+                })
+        }
+
+    }
+
     render() {
         return (
             <div className="sms">
                 <div className="mobile">
                     <label htmlFor="mobile">+86</label>
-                    <input type="text" id="mobile" name="mobile" placeholder="手机号码" onChange={this.handleMobileChange} />
+                    <input type="text" id="mobile" name="mobile" placeholder="手机号码" onChange={this.handleMobileChange} autoComplete="off" />
                 </div>
-                {this.props.render}
+                {this.props.register ? <Password handleMsg={this.handleMsg.bind(this)} handlePassword={this.handlePassword.bind(this)} /> : ''}
                 <div className="code">
-                    <input type="text" id="code" name="code" placeholder="验证码" onChange={this.handleCodeChange} />
+                    <input type="text" id="code" name="code" placeholder="验证码" onChange={this.handleCodeChange} autoComplete="off" />
                     <button className={this.state.disabled ? "disabled" : ""} disabled={this.state.disabled} onClick={this.sendSms}>{this.state.msg}</button>
                 </div>
+                <Msg error={this.state.error} />
+                <button className="submit" onClick={this.submit}>{this.props.register ? '注册' : '登录'}</button>
             </div>
+
         )
     }
 }
@@ -277,6 +229,61 @@ class SmsLogin extends React.Component {
 class AccountLogin extends React.Component {
     constructor() {
         super()
+        this.state = {
+            username: '',
+            password: '',
+            error: {
+                flag: false,
+                msg: ''
+            }
+        }
+
+        this.handleInputChange = this.handleInputChange.bind(this)
+        this.submit = this.submit.bind(this)
+    }
+
+    handleInputChange(e) {
+        const id = e.target.id
+        const value = e.target.value
+
+        this.setState({
+            [id]: value
+        })
+    }
+
+    submit() {
+        const username = this.state.username
+        const password = this.state.password
+
+        if (username.length == 0) {
+            this.setState({ error: { flag: true, msg: '用户名为空' } })
+            return
+        }
+
+        if (password.length == 0) {
+            this.setState({ error: { flag: true, msg: '密码为空' } })
+            return
+        }
+
+        fetch(baseUrl + `/user/login`,
+            {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify({ username: username, password: password })
+            })
+            .then(response => response.json())
+            .then(response => {
+                if (response.flag) {
+                    const { token, name, avatar } = response.data
+                    Cookies.set('TokenKey', token)
+                    Cookies.set('NameKey', name)
+                    Cookies.set('AvatarKey', avatar)
+                    window.location.href = 'index.html'
+                }
+                else this.setState({ error: { flag: true, msg: response.message } })
+            })
     }
 
     render() {
@@ -286,15 +293,17 @@ class AccountLogin extends React.Component {
                     <label htmlFor="account">
                         <i className="fa fa-user-o" aria-hidden="true"></i>
                     </label>
-                    <input type="text" id="account" placeholder="手机/邮箱/资网账号" />
+                    <input type="text" id="username" placeholder="手机/邮箱/资网账号" onChange={this.handleInputChange} autoComplete="off" />
                 </div>
                 <div className="password">
                     <label htmlFor="password">
                         <i className="fa fa-lock" aria-hidden="true"></i>
                     </label>
-                    <input type="password" id="password" placeholder="登录密码" />
+                    <input type="password" id="password" placeholder="登录密码" onChange={this.handleInputChange} autoComplete="off" />
                 </div>
                 <a href="#">忘记密码</a>
+                <Msg error={this.state.error} />
+                <button className="submit" onClick={this.submit}>登录</button>
             </div>
         )
     }
@@ -321,6 +330,8 @@ class Password extends React.Component {
         this.setState({
             [name]: value
         })
+
+        this.props.handlePassword(this.state.repassword)
     }
 
     handlePasswordBlur(e) {
@@ -354,6 +365,7 @@ class Password extends React.Component {
         this.props.handleMsg({ flag: false, msg: "" })
 
     }
+
     handleRepasswordBlur(e) {
         const repassword = e.target.value
         const password = this.state.password
@@ -362,6 +374,8 @@ class Password extends React.Component {
             this.props.handleMsg({ flag: true, msg: "两次密码不一致" })
             :
             this.props.handleMsg({ flag: false, msg: "" })
+
+        this.props.handlePassword(repassword)
     }
 
     render() {
@@ -442,12 +456,12 @@ function ThirdLogin(props) {
 }
 
 const smsLogin = {
-    loginWay: <SmsLogin handleAccount={this.handleAccount} />,
+    loginWay: <SmsLogin />,
     headerInfo: { title: '手机快捷登录', otherLogin: '账户登录' }
 }
 
 const accountLogin = {
-    loginWay: <AccountLogin handleAccount={this.handleAccount} />,
+    loginWay: <AccountLogin />,
     headerInfo: { title: '账户登录', otherLogin: '手机快捷登录' }
 }
 

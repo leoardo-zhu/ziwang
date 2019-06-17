@@ -118,116 +118,118 @@
         padding: 16px;
         background-color: #fff;
 
-        &>.title {
-            border-bottom: solid 1px #eee;
+        .resources-list {
+            &>.title {
+                border-bottom: solid 1px #eee;
 
-            a {
-                display: inline-block;
-                text-decoration: none;
-                font-size: 16px;
-                color: #756b6b;
-                margin-right: 30px;
-                padding-bottom: 10px;
+                a {
+                    display: inline-block;
+                    text-decoration: none;
+                    font-size: 16px;
+                    color: #756b6b;
+                    margin-right: 30px;
+                    padding-bottom: 10px;
 
-                &.active {
-                    color: #e33f3f;
-                    border-bottom: solid 2px #e33f3f;
-                }
-
-                &:hover {
-                    @extend .active
-                }
-            }
-        }
-
-        .list {
-
-            li {
-                padding: 8px 0;
-                overflow: hidden;
-                position: relative;
-                border-bottom: dashed 1px #e6e6e6;
-
-                .dt {
-                    float: left;
-                }
-
-                .dd {
-                    float: left;
-                    margin-left: 20px;
-
-                    .title {
-                        color: #2e2e2e;
-                        font-size: 16px;
-                        font-weight: bold;
-                        text-decoration: none;
-                        display: block;
-                        margin-bottom: 18px;
-                        overflow: hidden;
-
-                        &:hover {
-                            color: #e33f3f;
-                        }
+                    &.active {
+                        color: #e33f3f;
+                        border-bottom: solid 2px #e33f3f;
                     }
 
-                    .tags {
-                        float: left;
+                    &:hover {
+                        @extend .active
+                    }
+                }
+            }
 
-                        ul {
-                            li {
-                                float: left;
-                                font-size: 12px;
-                                margin-right: 10px;
-                                padding: 0 7px;
-                                border-radius: 4px;
-                                background-color: #e1ecf4;
-                                color: #0077cc;
-                                cursor: pointer;
+            .list {
+
+                li {
+                    padding: 8px 0;
+                    overflow: hidden;
+                    position: relative;
+                    border-bottom: dashed 1px #e6e6e6;
+
+                    .dt {
+                        float: left;
+                    }
+
+                    .dd {
+                        float: left;
+                        margin-left: 20px;
+
+                        .title {
+                            color: #2e2e2e;
+                            font-size: 16px;
+                            font-weight: bold;
+                            text-decoration: none;
+                            display: block;
+                            margin-bottom: 18px;
+                            overflow: hidden;
+
+                            &:hover {
+                                color: #e33f3f;
                             }
                         }
 
+                        .tags {
+                            float: left;
 
-                    }
+                            ul {
+                                li {
+                                    float: left;
+                                    font-size: 12px;
+                                    margin-right: 10px;
+                                    padding: 0 7px;
+                                    border-radius: 4px;
+                                    background-color: #e1ecf4;
+                                    color: #0077cc;
+                                    cursor: pointer;
+                                }
+                            }
 
 
-                }
-
-                .detail {
-                    color: #a8a8a8;
-                    float: right;
-                    font-size: 12px;
-                    padding-right: 5px;
-                    margin-top: 42px;
-
-                    span {
-                        padding-right: 5px;
-                    }
-
-                    a {
-                        color: #a8a8a8;
-                        text-decoration: none;
-
-                        &:hover {
-
-                            color: #5aa0cc;
                         }
 
 
                     }
 
+                    .detail {
+                        color: #a8a8a8;
+                        float: right;
+                        font-size: 12px;
+                        padding-right: 5px;
+                        margin-top: 42px;
 
-                }
+                        span {
+                            padding-right: 5px;
+                        }
 
-                .price {
-                    position: absolute;
-                    right: 10px;
-                    font-size: 20px;
-                    font-weight: bold;
-                    color: red;
+                        a {
+                            color: #a8a8a8;
+                            text-decoration: none;
+
+                            &:hover {
+
+                                color: #5aa0cc;
+                            }
+
+
+                        }
+
+
+                    }
+
+                    .price {
+                        position: absolute;
+                        right: 10px;
+                        font-size: 20px;
+                        font-weight: bold;
+                        color: red;
+                    }
                 }
             }
-
         }
+
     }
 }
 
@@ -246,7 +248,7 @@
         margin-bottom: 15px;
         border: 1px solid #e64620;
 
-        h2{
+        h2 {
             margin-top: 0;
             color: #ec5f3c;
             text-align: center;

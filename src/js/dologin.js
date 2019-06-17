@@ -1,15 +1,19 @@
-const baseUrl = 'http://localhost:9000'
+const baseUrl = 'http://10.129.235.5:9000'
 
 
 window.onload = function () {
-    fetch(baseUrl + `/user/dologin/${Cookies.get('TokenKey')}`, {
-            method: 'POST'
-        })
+    const token = Cookies.get('TokenKey')
+    fetch(baseUrl + '/user/dologin', {
+        method: 'POST',
+        headers: {
+            Authorization: token || '124'
+        }
+    })
         .then(response => response.json())
         .then(response => {
-            if (!response.flag) {
-                Cookies.remove('TokenKey')
-                location.href = 'index.html'
+            if(!response.flag){
+                alert(response.message)
+                window.location.href = 'https://www.baidu.com'
             }
         })
 }
