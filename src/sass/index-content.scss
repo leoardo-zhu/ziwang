@@ -117,8 +117,10 @@
     .resources {
         padding: 16px;
         background-color: #fff;
+        min-height: 300px;
 
         .resources-list {
+
             &>.title {
                 border-bottom: solid 1px #eee;
 
@@ -228,8 +230,19 @@
                     }
                 }
             }
-        }
 
+            .loading {
+                margin-top: 100px;
+                text-align: center;
+              
+                h1 {
+                    text-transform: uppercase;
+                    letter-spacing: 1.5px;
+                    -webkit-animation: fade 1.5s infinite;
+                    -moz-animation: fade 1.5s infinite;
+                }
+            }
+        }
     }
 }
 
@@ -297,6 +310,7 @@
     }
 
     .hot-resources {
+        min-height: 180px;
         padding-top: 15px;
         margin-bottom: 15px;
         background-color: #fff;
@@ -308,8 +322,18 @@
             color: #e64620;
         }
 
+        h2{
+            margin-top: 50px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            -webkit-animation: fade 1.5s infinite;
+            -moz-animation: fade 1.5s infinite;
+        }
+
         ul {
             padding: 15px;
+            min-height: 200px;
 
             li {
                 padding-bottom: 5px;
@@ -373,5 +397,25 @@
                 cursor: pointer;
             }
         }
+    }
+}
+
+@-webkit-keyframes fade {
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes fade {
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
     }
 }

@@ -96,6 +96,7 @@
 .left-content .resources {
   padding: 16px;
   background-color: #fff;
+  min-height: 300px;
 }
 .left-content .resources .resources-list > .title {
   border-bottom: solid 1px #eee;
@@ -174,6 +175,16 @@
   font-weight: bold;
   color: red;
 }
+.left-content .resources .resources-list .loading {
+  margin-top: 100px;
+  text-align: center;
+}
+.left-content .resources .resources-list .loading h1 {
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  -webkit-animation: fade 1.5s infinite;
+  -moz-animation: fade 1.5s infinite;
+}
 
 .right-content {
   float: right;
@@ -224,6 +235,7 @@
   text-decoration: none;
 }
 .right-content .hot-resources, .right-content .hot-tags {
+  min-height: 180px;
   padding-top: 15px;
   margin-bottom: 15px;
   background-color: #fff;
@@ -234,8 +246,17 @@
   border-left: 2px solid #e64620;
   color: #e64620;
 }
+.right-content .hot-resources h2, .right-content .hot-tags h2 {
+  margin-top: 50px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  -webkit-animation: fade 1.5s infinite;
+  -moz-animation: fade 1.5s infinite;
+}
 .right-content .hot-resources ul, .right-content .hot-tags ul {
   padding: 15px;
+  min-height: 200px;
 }
 .right-content .hot-resources ul li, .right-content .hot-tags ul li {
   padding-bottom: 5px;
@@ -282,6 +303,23 @@
   color: #39739d;
   background: #e1ecf4;
   cursor: pointer;
+}
+
+@-webkit-keyframes fade {
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fade {
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 /*# sourceMappingURL=index-content.css.map */
