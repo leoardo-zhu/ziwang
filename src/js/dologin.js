@@ -6,14 +6,14 @@ window.onload = function () {
     fetch(baseUrl + '/user/dologin', {
         method: 'POST',
         headers: {
-            Authorization: token || '124'
+            Authorization: token
         }
     })
         .then(response => response.json())
         .then(response => {
             if(!response.flag){
                 alert(response.message)
-                window.location.href = 'https://www.baidu.com'
+                window.location.href = 'http://47.101.39.237/login.html'
             }
         })
 }

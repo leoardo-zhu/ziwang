@@ -66,7 +66,7 @@ function UserModule() {
                 React.createElement(
                     'div',
                     { className: 'photo' },
-                    React.createElement('img', { src: 'img/user-photo.png', alt: '\u7528\u6237\u5934\u50CF' })
+                    React.createElement('img', { src: user.avatar, alt: '\u7528\u6237\u5934\u50CF' })
                 ),
                 React.createElement(
                     'div',
@@ -74,7 +74,7 @@ function UserModule() {
                     React.createElement(
                         'p',
                         null,
-                        'Leonardo_Zhu'
+                        user.name
                     ),
                     React.createElement(
                         'div',
@@ -161,14 +161,18 @@ var Category = function (_React$Component) {
         return _this;
     }
 
-    _createClass(Category, [{
-        key: 'componentWillUpdate',
-        value: function componentWillUpdate() {
-            var _state = this.state,
-                tag1 = _state.tag1,
-                tag2 = _state.tag2;
+    // 一级分类与二级分类更新后变更resources组件
 
-            fetch(baseUrl + ('/resource/type/' + tag1.type1Id + '/' + tag2.type2Id)).then(function (response) {
+
+    _createClass(Category, [{
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate() {
+            ReactDOM.render(React.createElement(Loading, null), document.getElementById('resources'));
+
+            var type1Id = this.state.tag1.type1Id || 0;
+            var type2Id = this.state.tag2.type2Id || 0;
+
+            fetch(baseUrl + ('/resource/type/' + type1Id + '/' + type2Id)).then(function (response) {
                 return response.json();
             }).then(function (response) {
                 ReactDOM.render(React.createElement(Resources, { resources: response.data }), document.getElementById('resources'));
@@ -202,11 +206,11 @@ var Category = function (_React$Component) {
         value: function render() {
             var _this2 = this;
 
-            var _state2 = this.state,
-                type = _state2.type,
-                tag1 = _state2.tag1,
-                tag2 = _state2.tag2,
-                type2 = _state2.type2;
+            var _state = this.state,
+                type = _state.type,
+                tag1 = _state.tag1,
+                tag2 = _state.tag2,
+                type2 = _state.type2;
 
 
             var tag1View = tag1.type1Id ? React.createElement(
@@ -340,25 +344,51 @@ var Category = function (_React$Component) {
     return Category;
 }(React.Component);
 
-function HotResources() {
-    var hotResources = resources.hot;
-    console.log(hotResources);
-    // if (hotResources.length) {
-    //     return hotResources.map(resource =>
-    //         <li>
-    //             <p className="title">
-    //                 <a href={`download.html?id=${resource.id}`}>{resource.title}</a>
-    //             </p>
-    //             <p className="detail">
-    //                 <span>{resource.uploaddate}</span>
-    //                 <span className="downloads"><i className="fa fa-cloud-download"></i> {resource.downloads}</span>
-    //             </p>
-    //         </li>
-    //     )
-    // }
-    // else 
-    return null;
+// 热门资源
+
+
+function HotResources(props) {
+    var hotResources = props.resources;
+    if (hotResources) {
+        return hotResources.map(function (resource) {
+            return React.createElement(
+                'li',
+                null,
+                React.createElement(
+                    'p',
+                    { className: 'title' },
+                    React.createElement(
+                        'a',
+                        { href: 'download.html?id=' + resource.id },
+                        resource.title
+                    )
+                ),
+                React.createElement(
+                    'p',
+                    { className: 'detail' },
+                    React.createElement(
+                        'span',
+                        null,
+                        resource.uploaddate
+                    ),
+                    React.createElement(
+                        'span',
+                        { className: 'downloads' },
+                        React.createElement('i', { className: 'fa fa-cloud-download' }),
+                        ' ',
+                        resource.downloads
+                    )
+                )
+            );
+        });
+    } else return React.createElement(
+        'h2',
+        null,
+        '\u6682\u65E0\u8D44\u6E90'
+    );
 }
+
+// 资源列表
 
 var Resources = function (_React$Component2) {
     _inherits(Resources, _React$Component2);
@@ -391,13 +421,96 @@ var Resources = function (_React$Component2) {
     _createClass(Resources, [{
         key: 'render',
         value: function render() {
-            var _state3 = this.state,
-                newResources = _state3.newResources,
-                mostResources = _state3.mostResources,
-                boolean = _state3.boolean;
+            var _state2 = this.state,
+                newResources = _state2.newResources,
+                mostResources = _state2.mostResources,
+                boolean = _state2.boolean;
 
 
             var resources = boolean ? newResources : mostResources;
+
+            var list = React.createElement(
+                'div',
+                { className: 'loading' },
+                React.createElement(
+                    'h1',
+                    null,
+                    '\u6682\u65E0\u8D44\u6E90'
+                )
+            );
+
+            if (resources.length) {
+                list = resources.map(function (resource) {
+                    return React.createElement(
+                        'li',
+                        { key: resource.id },
+                        React.createElement(
+                            'div',
+                            { className: 'dt' },
+                            React.createElement(
+                                'a',
+                                { href: 'download.html?id=' + resource.id },
+                                React.createElement('img', { src: 'img/zip.svg', alt: '\u6587\u4EF6\u7C7B\u578B' })
+                            )
+                        ),
+                        React.createElement(
+                            'div',
+                            { className: 'dd' },
+                            React.createElement(
+                                'a',
+                                { href: 'download.html?id=' + resource.id, className: 'title' },
+                                resource.title
+                            ),
+                            React.createElement(
+                                'div',
+                                { className: 'tags' },
+                                React.createElement(
+                                    'ul',
+                                    null,
+                                    resource.tags.split(',').map(function (tag, index) {
+                                        return React.createElement(
+                                            'li',
+                                            { key: index },
+                                            tag
+                                        );
+                                    })
+                                )
+                            )
+                        ),
+                        React.createElement(
+                            'div',
+                            { className: 'detail' },
+                            React.createElement(
+                                'span',
+                                null,
+                                React.createElement('i', { className: 'fa fa-cloud-download' }),
+                                ' ',
+                                resource.downloads
+                            ),
+                            React.createElement(
+                                'span',
+                                null,
+                                resource.uploaddate
+                            ),
+                            React.createElement(
+                                'span',
+                                null,
+                                '\u6765\u81EA\uFF1A',
+                                React.createElement(
+                                    'a',
+                                    { href: '#' },
+                                    resource.user.nickname
+                                )
+                            )
+                        ),
+                        React.createElement(
+                            'div',
+                            { className: 'price' },
+                            resource.cost ? resource.cost + ' 积分' : '免费'
+                        )
+                    );
+                });
+            }
 
             return React.createElement(
                 'div',
@@ -425,76 +538,7 @@ var Resources = function (_React$Component2) {
                 React.createElement(
                     'ul',
                     { className: 'list' },
-                    resources.map(function (resource) {
-                        return React.createElement(
-                            'li',
-                            { key: resource.id },
-                            React.createElement(
-                                'div',
-                                { className: 'dt' },
-                                React.createElement(
-                                    'a',
-                                    { href: 'download.html?id=' + resource.id },
-                                    React.createElement('img', { src: 'img/zip.svg', alt: '\u6587\u4EF6\u7C7B\u578B' })
-                                )
-                            ),
-                            React.createElement(
-                                'div',
-                                { className: 'dd' },
-                                React.createElement(
-                                    'a',
-                                    { href: 'download.html?id=' + resource.id, className: 'title' },
-                                    resource.title
-                                ),
-                                React.createElement(
-                                    'div',
-                                    { className: 'tags' },
-                                    React.createElement(
-                                        'ul',
-                                        null,
-                                        resource.tags.split(',').map(function (tag, index) {
-                                            return React.createElement(
-                                                'li',
-                                                { key: index },
-                                                tag
-                                            );
-                                        })
-                                    )
-                                )
-                            ),
-                            React.createElement(
-                                'div',
-                                { className: 'detail' },
-                                React.createElement(
-                                    'span',
-                                    null,
-                                    React.createElement('i', { className: 'fa fa-cloud-download' }),
-                                    ' ',
-                                    resource.downloads
-                                ),
-                                React.createElement(
-                                    'span',
-                                    null,
-                                    resource.uploaddate
-                                ),
-                                React.createElement(
-                                    'span',
-                                    null,
-                                    '\u6765\u81EA\uFF1A',
-                                    React.createElement(
-                                        'a',
-                                        { href: '#' },
-                                        resource.user.nickname
-                                    )
-                                )
-                            ),
-                            React.createElement(
-                                'div',
-                                { className: 'price' },
-                                resource.cost ? resource.cost + ' 积分' : '免费'
-                            )
-                        );
-                    })
+                    list
                 )
             );
         }
@@ -502,3 +546,33 @@ var Resources = function (_React$Component2) {
 
     return Resources;
 }(React.Component);
+
+function Loading() {
+    return React.createElement(
+        'div',
+        { className: 'resources-list' },
+        React.createElement(
+            'div',
+            { className: 'title' },
+            React.createElement(
+                'a',
+                { href: 'javascript:void(0)', className: 'active' },
+                '\u6700\u65B0\u4E0A\u4F20'
+            ),
+            React.createElement(
+                'a',
+                { href: 'javascript:void(0)' },
+                '\u6700\u591A\u4E0B\u8F7D'
+            )
+        ),
+        React.createElement(
+            'div',
+            { className: 'loading' },
+            React.createElement(
+                'h1',
+                null,
+                'loading...'
+            )
+        )
+    );
+}

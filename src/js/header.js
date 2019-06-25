@@ -27,10 +27,10 @@ function Header() {
             { className: 'ul-nav' },
             React.createElement(
                 'li',
-                { className: 'active' },
+                null,
                 React.createElement(
                     'a',
-                    { href: '' },
+                    { href: 'index.html' },
                     '\u9996\u9875'
                 )
             ),
@@ -39,8 +39,8 @@ function Header() {
                 null,
                 React.createElement(
                     'a',
-                    { href: '' },
-                    '\u5168\u90E8\u8D44\u6E90'
+                    { href: 'school.html' },
+                    '\u6821\u56ED\u52A8\u6001'
                 )
             ),
             React.createElement(
@@ -48,7 +48,7 @@ function Header() {
                 null,
                 React.createElement(
                     'a',
-                    { href: '' },
+                    { href: 'upload.html' },
                     '\u4E0A\u4F20'
                 )
             ),
@@ -91,7 +91,7 @@ var User = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (User.__proto__ || Object.getPrototypeOf(User)).call(this));
 
         _this.state = {
-            display: 'none'
+            display: false
         };
         return _this;
     }
@@ -104,7 +104,7 @@ var User = function (_React$Component) {
             Cookies.remove('NameKey');
             Cookies.remove('AvatarKey');
 
-            location.reload();
+            window.location.reload();
         }
     }, {
         key: 'render',
@@ -126,14 +126,12 @@ var User = function (_React$Component) {
                 React.createElement(
                     'li',
                     { className: 'hover' },
-                    React.createElement('i', { className: 'fa fa-plus', id: 'hover-info', onMouseOver: function onMouseOver() {
-                            return _this2.setState({ display: '' });
-                        }, onMouseOut: function onMouseOut() {
-                            return _this2.setState({ display: 'none' });
+                    React.createElement('i', { className: 'fa fa-plus', id: 'hover-info', onClick: function onClick() {
+                            return _this2.setState({ display: !_this2.state.display });
                         } }),
                     React.createElement(
                         'ul',
-                        { className: 'hover-info', style: { display: this.state.display } },
+                        { className: 'hover-info', style: { display: this.state.display ? '' : 'none' } },
                         React.createElement(
                             'li',
                             null,
@@ -167,7 +165,7 @@ var User = function (_React$Component) {
                         React.createElement(
                             'li',
                             null,
-                            React.createElement('i', { 'class': 'fa fa-sign-out', 'aria-hidden': 'true' }),
+                            React.createElement('i', { className: 'fa fa-sign-out', 'aria-hidden': 'true' }),
                             React.createElement(
                                 'a',
                                 { href: 'javascript:void(0)', target: '_blank', onClick: this.logout },
@@ -181,8 +179,8 @@ var User = function (_React$Component) {
                     null,
                     React.createElement(
                         'a',
-                        { href: 'user-info.html', className: 'user-photo' },
-                        React.createElement('img', { src: 'img/user-photo.png', alt: '\u7528\u6237\u5934\u50CF' })
+                        { href: 'http://47.101.39.237/user/', className: 'user-photo' },
+                        React.createElement('img', { src: Cookies.get('AvatarKey'), alt: '\u7528\u6237\u5934\u50CF' })
                     )
                 )
             );

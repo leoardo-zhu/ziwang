@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>校园兼职</title>
+	<script type="text/javascript">
+		function applyMoreTask() {
+			alert("您已成功申请，请尽快与任务发布人联系！")
+		}
+	</script>
+	<style type="text/css">
+		* {
+			margin: 0 auto;
+			padding: 0;
+		}
+
+		body,
+		button {
+			animation: change 10s linear 0s infinite;
+		}
+
+		@keyframes change {
+			0% {
+				background-color: #aad8ff;
+			}
+
+			75% {
+				background-color: #e6f3ff;
+			}
+
+			100% {
+				background-color: #daecff;
+			}
+		}
+
+		td {
+
+			background-color: white;
+			padding: 20px;
+			width: 800px;
+			height: 100px;
+		}
+
+		button {
+			position: absolute;
+			right: 400px;
+			width: 80px;
+		}
+	</style>
+	<script type="text/javascript" src="plugin/jquery-3.3.1.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$.ajax({
+				type: 'get',
+				url: 'http://localhost:9005/me/getTask',
+				dataType: 'json',
+				data: {},
+
+				success: function (data) {
+					data = data.data;
+
+					$(function () {
+						var arr = data.tasks;
+						var str = new Date();
+
+						$.each(arr, function (index, value) {
+							var time = value.deadline.replace("T", " ");
+
+							if (time == '') {
+								// $("td").css("background-color","pink");
+							} else if (formatCSTDate(str, "yyyy-M-d hh:mm:ss") > time) {
+								// $("td").css("background-color","grey");
+								value.deadline = value.deadline +
+									"  <font color='red'>  过期</font>";
+								// $("button").attr("disabled", true);
+								// alert(formatCSTDate(str,"yyyy-M-d hh:mm:ss")>time);
+								// alert(formatCSTDate(str,"yyyy-M-d hh:mm:ss")+time);
+							};
+							$("table").append("<tr><td>" + value.workclass + ":" + value
+								.discription + "<br>联系 qq:" + value.qq + "联系电话" +
+								value.tel + "<br>截止时间：" + (value.deadline == '' ?
+									"发布人未指定" : value.deadline.replace("T", " ")) +
+								"<br>积分" + (value.integral == '' ? '0' : value
+									.integral) +
+								"<button onclick='applyMoreTask()'>" +
+								"获取任务</button>" + "</td></tr>");
+						});
+					});
+				},
+			});
+		})
+
+		//格式化CST日期的字串
+		function formatCSTDate(strDate, format) {
+			return formatDate(new Date(strDate), format);
+		}
+
+		//格式化日期,
+		function formatDate(date, format) {
+			var paddNum = function (num) {
+				num += "";
+				return num.replace(/^(\d)$/, "0$1");
+			}
+			//指定格式字符
+			var cfg = {
+				yyyy: date.getFullYear() //年 : 4位
+					,
+				yy: date.getFullYear().toString().substring(2) //年 : 2位
+					,
+				MM: paddNum(date.getMonth() + 1) //月 : 如果1位的时候补0
+					,
+				dd: paddNum(date.getDate()) //日 : 如果1位的时候补0
+					,
+				hh: date.getHours() //时
+					,
+				mm: date.getMinutes() //分
+					,
+				ss: date.getSeconds() //秒
+			}
+			format || (format = "yyyy-MM-dd hh:mm:ss");
+			return format.replace(/([a-z])(\1)*/ig, function (m) {
+				return cfg[m];
+			});
+		}
+	</script>
+</head>
+
+<body>
+	<table>
+	</table>
+</body>
+
+</html>

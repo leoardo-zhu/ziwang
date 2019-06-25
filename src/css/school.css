@@ -1,0 +1,262 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+/*顶部登录注册---*/
+.header1{
+	width: 100%;
+	height: 36px;
+	background-color: #EBEEE0;
+}
+.leftArea{
+	float: left;
+	margin-left: 80px;
+}
+.rightArea{
+	float: right;
+	margin-right: 80px;
+
+}
+.left_findjob div{
+	/*color: #868B8E;*/
+}
+body,#discription,.content button{
+	animation: change 10s linear 0s infinite;
+}
+
+@keyframes change {
+	0% {
+		background-color: #aad8ff;
+	}
+	75% {
+		background-color: #e6f3ff;
+	}
+	100% {
+		background-color: #daecff;
+	}
+}
+a{
+	text-decoration: none;
+	color: black;
+}
+li{
+	list-style: none;
+	float: left;
+	line-height: 36px;
+	font-size: 14px;
+	padding-left: 20px;
+	padding-right: 20px;
+	background-color:#EBEEE0;
+}
+li a{
+	color: rgb(156,156,156);
+	background-color: #EBEEE0;
+}
+.header{
+	height: 122px;
+}
+.left_findjob{
+	position: relative;
+	top: 20px;
+	left: 36px;
+	width: 340px;
+	height: auto;
+	float: left;
+	
+}
+.part-time-title{
+	padding: 10px;
+	font-size: 30px;
+}
+.left_findjob div{
+
+	width:300px;
+	height: 40px;
+	padding: 10px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	background-color: white;
+	border-top-left-radius: 12px;
+	overflow: hidden;
+}
+.left_findjob div:hover{
+	padding: 20px;
+	font-size: 20px;
+}
+.right-trends{
+	position: relative;
+	width: 872px;
+	height: auto;
+	float: left;
+	left: 80px;
+	top: 20px;
+	border-radius: 2px;
+}
+.right-trends div{
+	color:black;
+	/*width: 850px;*/
+	text-align: left;
+	padding: 10px;
+	font-size: 30px;
+
+}
+.right-trends div p{
+	width: 840px;
+	height: auto;
+	font-family: 20px;
+	margin-top: 10px;
+	font-size: 10px;
+	padding-left: 10px;
+	background-color: #F3F3FA;
+	border: #EEEDE7 solid 1px;
+	overflow: hidden;
+}
+.nav-right ul li{
+	background-color:rgb(95,182,255);
+	height: auto;
+	padding: 0 10px;
+	margin: 0 10px;
+	cursor: pointer;
+	color:#EEEDE7;
+	border-top-left-radius: 12px;
+}
+.nav-right ul li:hover{
+	background-color: grey;
+	margin: 10px;
+}
+.footer{
+	clear: both;
+	padding: 30px;
+	position: relative;
+	top: 60px;
+}
+#task1,#task2,#task3,#task4,#task5,#task6,#task7,#task8{
+	cursor: pointer;
+}
+#content0,#content1,#content2,#content3{
+	height: auto;
+	font-size: 15px;
+	padding: 20px;
+	background-color: white;
+	border-top-left-radius: 42px;
+}
+.content{
+		box-shadow: 3px 2px 4px #ccc;
+		position: relative;
+		top: 100px;
+		left: 400px;
+		width: auto;
+		height: auto;
+		min-height: 400px;
+		display: none;
+		z-index: 999;
+		position: fixed;
+		text-align: center;
+		border:1px solid #a9c9e2;
+		background: rgba(0,0,0,0.6);
+		color: white;
+		border-radius: 4px;
+	}
+	#discription{
+		position: relative;
+		top: 50px;
+		width: 400px;
+		height: auto;
+		min-height: 200px;
+		max-height: 350px;
+		padding:10px;
+		margin-left: 23px;
+		color: black;
+	}
+	#qq{
+		position: relative;
+		top: 50px;
+		width: 450px;
+		height: auto;
+		padding:10px 20px;
+		text-align: left;
+	}
+	#deadline{
+		position: relative;
+		top: 50px;
+		width: 450px;
+		height: auto;
+		padding:10px 20px;
+		text-align: left;
+	}
+	#integral{
+		position: relative;
+		top:50px;
+		width: 450px;
+		height: auto;
+		padding:10px 20px;
+		text-align: left;
+	}
+	.content button{
+		position: relative;
+		top: 20px;
+		margin-right: 40px;
+		float: right;
+		font-family: "微软雅黑","microsoft yahei";
+	}
+	.content button:hover{
+		background-color: blue;
+	}
+@media (min-width: 1200px) {
+  footer .link dl {
+    width: 203px;
+  }
+  footer .link .license {
+    width: 300px;
+  }
+}
+@media only screen and (min-width: 1024px) and (max-width: 1200px) {
+  footer .link dl {
+    width: 186px;
+  }
+  footer .link .license {
+    width: 250px;
+  }
+}
+@media (max-width: 1024px) {
+  footer .link dl {
+    width: 150px;
+  }
+  footer .link .license {
+    width: 200px;
+  }
+}
+footer {
+  border-top: 1px solid #e6e6e6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+footer .link {
+  overflow: hidden;
+}
+footer .link dl {
+  float: left;
+}
+footer .link dl dt {
+  padding-bottom: 15px;
+  font-size: 16px;
+  font-weight: bold;
+}
+footer .link dl dd {
+  margin-left: 0;
+  font-size: 14px;
+  line-height: 22px;
+}
+footer .link .license {
+  float: right;
+  margin-top: 16px;
+}
+footer .link .license p {
+  margin-top: 15px;
+  font-size: 14px;
+}
+footer .copyright {
+  text-align: center;
+  font-size: 14px;
+  color: #999;
+}

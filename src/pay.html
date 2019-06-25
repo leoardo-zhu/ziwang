@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>积分支付</title>
+	<style type="text/css">
+    	*{
+	 		margin: 0 20px;
+	 		padding: 20px;
+	 		font-size: 17px;
+ 		}
+ 		body{
+ 			background-image: url(img/pay.png);
+ 			background-size: 250%;
+ 		}
+ 		div{
+ 			position: relative;
+ 			top: 100px;
+ 			left: 80px;
+ 		}
+ 		button{
+ 			border:none;
+ 			border-radius: 10px;
+ 		}
+ 		button:hover{
+ 			background-color:pink;
+ 		}
+    </style>
+    <script type="text/javascript" src="plugin/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="js/pay.js"></script>
+</head>
+<body>
+	<div>
+		<form id="form" action="javascript:void(0)">
+		向<input type="text" name="incometel" placeholder="被支付方电话号" value=""><button onclick="pay()">支付积分</button><input type="number" name="integral" min="1" value="">X100
+		</form>
+	</div>
+	
+</body>
+</html>

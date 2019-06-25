@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>积分服务</title>
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<style type="text/css">
+	body{
+		color: #868B8E;
+	}
+		.left{
+			width: 693px;
+			height: 440px;
+			background-color: #EEEDE7;
+			margin-top: 100px;
+			margin-left: 160px;
+			float: left;
+			border-right: 1px solid #868B8E;
+			text-align: center;
+		}
+		.right{
+			width: 300px;
+			height: 440px;
+			float: left;
+			background-color: #B9B7BD;
+			margin-top: 100px;
+			text-align: center;
+		}
+		input{
+			width: 200px;
+			height: 20px;
+		}
+		.leftintegral{
+			height: 80px;
+			margin-top: 40px;
+			padding-bottom: 40px;
+			border-bottom: 1px solid #B9B7BD; 
+		}
+		.payimg{
+			margin-top: 60px;
+			border:2px solid #eef1f3;
+			border-radius: 6px;
+		}
+		.paycount{
+			width: 90%;
+			height: 40px;
+			margin-left: 15px;
+			margin-top: 40px;
+			background-color: #EEEDE7;
+			line-height: 40px;
+			border:2px solid #eef1f3;
+			border-radius: 6px;
+		}
+		.leftintegral div{
+			width: 100px;
+			height: 40px;
+			float:left;
+			border:#B9B7BD solid 2px;
+			margin-left: 52px;
+			margin-top: 10px;
+			border-radius: 5px;
+			background-color: #EEEDE7;
+		}
+		.leftintegral div:hover{
+			border:#868B8E solid 3px;
+			cursor: pointer;
+		}
+		p{
+			text-align: left;
+			margin-left: 10px; 
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			 $(".integral").click(function(){
+       			$(".paycount strong").text($(this).find("b").text());
+			});
+		})
+   
+	</script>
+</head>
+<body>
+<div>
+	<div class="left">
+		<br><br>
+		<span>积分套餐</span>
+		<div class="leftintegral">
+			<div class="integral">
+				<i class="fa fa-star" aria-hidden="true"></i>
+				<b>10</b><br>￥10
+			</div>
+			<div class="integral">
+				<i class="fa fa-star" aria-hidden="true"></i>
+				<b>20</b><br>￥18
+			</div>
+			<div class="integral">
+				<i class="fa fa-star" aria-hidden="true"></i>
+				<b>30</b><br>￥25
+			</div>
+			<div class="integral">
+				<i class="fa fa-star" aria-hidden="true"></i>
+				<b>40</b><br>￥30
+			</div>
+		</div>
+		<p>
+			积分细则：
+			<p>1:已经成功开通的用户，一旦使用过相关权益的用户， 不支持退款；</p>
+			<p>2:已开具发票的套餐，不支持退款；</p>
+			<p>3:禁止用户使用任何方式利用本站资源为他人提供有偿下载服务，一经发现，本站有权查封该账号；</p>
+			<p>4:任何用户每日下载上限为20个资源；</p>
+		</p>
+	</div>
+	<div class="right">
+		<img src="img/pay.jpg" width="90%" class="payimg">
+		<div class="paycount">
+			<label>支付金额</label>
+			<strong>0</strong>元
+		</div>
+	</div>
+	
+</div>
+</body>
+</html>

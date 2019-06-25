@@ -57,10 +57,10 @@ function UserModule() {
             <div>
                 <div className="user">
                     <div className="photo">
-                        <img src="img/user-photo.png" alt="用户头像" />
+                        <img src={user.avatar} alt="用户头像" />
                     </div>
                     <div className="detail">
-                        <p>Leonardo_Zhu</p>
+                        <p>{user.name}</p>
                         <div className="level">
                             等级 <em>1</em>
                         </div>
@@ -87,9 +87,17 @@ class Category extends React.Component {
         }
     }
 
-    componentWillUpdate() {
-        const { tag1, tag2 } = this.state
-        fetch(baseUrl + `/resource/type/${tag1.type1Id}/${tag2.type2Id}`)
+    // 一级分类与二级分类更新后变更resources组件
+    componentDidUpdate() {
+        ReactDOM.render(
+            <Loading />,
+            document.getElementById('resources')
+        )
+
+        const type1Id = this.state.tag1.type1Id || 0
+        const type2Id = this.state.tag2.type2Id || 0
+
+        fetch(baseUrl + `/resource/type/${type1Id}/${type2Id}`)
             .then(response => response.json())
             .then(response => {
                 ReactDOM.render(
@@ -233,27 +241,26 @@ class Category extends React.Component {
 
 }
 
+// 热门资源
+function HotResources(props) {
+    const hotResources = props.resources
+    if (hotResources) {
+        return hotResources.map(resource =>
+            <li>
+                <p className="title">
+                    <a href={`download.html?id=${resource.id}`}>{resource.title}</a>
+                </p>
+                <p className="detail">
+                    <span>{resource.uploaddate}</span>
+                    <span className="downloads"><i className="fa fa-cloud-download"></i> {resource.downloads}</span>
+                </p>
+            </li>
+        )
+    } else return <h2>暂无资源</h2>
 
-function HotResources() {
-    const hotResources = resources.hot
-    console.log(hotResources)
-    // if (hotResources.length) {
-    //     return hotResources.map(resource =>
-    //         <li>
-    //             <p className="title">
-    //                 <a href={`download.html?id=${resource.id}`}>{resource.title}</a>
-    //             </p>
-    //             <p className="detail">
-    //                 <span>{resource.uploaddate}</span>
-    //                 <span className="downloads"><i className="fa fa-cloud-download"></i> {resource.downloads}</span>
-    //             </p>
-    //         </li>
-    //     )
-    // }
-    // else 
-    return null
 }
 
+// 资源列表
 class Resources extends React.Component {
     constructor(props) {
         super()
@@ -278,6 +285,39 @@ class Resources extends React.Component {
 
         const resources = boolean ? newResources : mostResources
 
+        let list =
+            <div className="loading">
+                <h1>暂无资源</h1>
+            </div>
+
+        if (resources.length) {
+            list = resources.map(resource =>
+                <li key={resource.id}>
+                    <div className="dt">
+                        <a href={`download.html?id=${resource.id}`}>
+                            <img src="img/zip.svg" alt="文件类型" />
+                        </a>
+                    </div>
+                    <div className="dd">
+                        <a href={`download.html?id=${resource.id}`} className="title">{resource.title}</a>
+                        <div className="tags">
+                            <ul>
+                                {resource.tags.split(',').map((tag, index) => <li key={index}>{tag}</li>)}
+                            </ul>
+                        </div>
+                    </div>
+                    <div className="detail">
+                        <span><i className="fa fa-cloud-download"></i> {resource.downloads}</span>
+                        <span>{resource.uploaddate}</span>
+                        <span>来自：<a href="#">{resource.user.nickname}</a></span>
+                    </div>
+                    <div className="price">
+                        {resource.cost ? resource.cost + ' 积分' : '免费'}
+                    </div>
+                </li>
+            )
+        }
+
         return (
             <div className="resources-list">
                 <div className="title">
@@ -295,36 +335,24 @@ class Resources extends React.Component {
                     </a>
                 </div>
                 <ul className="list">
-                    {
-                        resources.map(resource =>
-                            <li key={resource.id}>
-                                <div className="dt">
-                                    <a href={`download.html?id=${resource.id}`}>
-                                        <img src="img/zip.svg" alt="文件类型" />
-                                    </a>
-                                </div>
-                                <div className="dd">
-                                    <a href={`download.html?id=${resource.id}`} className="title">{resource.title}</a>
-                                    <div className="tags">
-                                        <ul>
-                                            {resource.tags.split(',').map((tag, index) => <li key={index}>{tag}</li>)}
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div className="detail">
-                                    <span><i className="fa fa-cloud-download"></i> {resource.downloads}</span>
-                                    <span>{resource.uploaddate}</span>
-                                    <span>来自：<a href="#">{resource.user.nickname}</a></span>
-                                </div>
-                                <div className="price">
-                                    {resource.cost ? resource.cost + ' 积分' : '免费'}
-                                </div>
-                            </li>
-                        )
-                    }
+                    {list}
                 </ul>
             </div>
         )
     }
+}
+
+function Loading() {
+    return (
+        <div className="resources-list">
+            <div className="title">
+                <a href="javascript:void(0)" className="active">最新上传</a>
+                <a href="javascript:void(0)">最多下载</a>
+            </div>
+            <div className="loading">
+                <h1>loading...</h1>
+            </div>
+        </div>
+    )
 }
 

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>发布任务</title>
+	<link rel="stylesheet" type="text/css" href="css/setwork.css">
+	<style type="text/css">
+		body {
+			background-image: url(img/setwork.jpg);
+		}
+	</style>
+	<script type="text/javascript" src="plugin/jquery-3.3.1.js"></script>
+	<script type="text/javascript">
+		function check() {
+			if (frm.qq.value == "") {
+				alert("请输入qq号");
+				frm.qq.focus();
+				return false;
+			}
+			if (frm.tel.value == "") {
+				alert("请输入电话号");
+				frm.tel.focus();
+				return false;
+			}
+			if (frm.discription.value == "") {
+				alert("请输入详细任务信息");
+				frm.discription.focus();
+				return false;
+			} else {
+				$.ajax({
+					type: 'post',
+					url: 'http://localhost:9005/me/setTask',
+					dataType: 'json',
+					data: $('#form').serialize(),
+					success: function (data) {
+						console.log(data);
+						if (data.flag) { //根据返回值进行跳转
+							alert("发布成功！");
+							window.location.href = 'file:///D:/ziwang/ziwang-front/me.html'
+						} else {
+							alert(data.message);
+						}
+					}
+				});
+
+			}
+		}
+	</script>
+</head>
+
+<body>
+	<div class="work">
+		<form action="javascript:void(0)" name="frm" id="form">
+			<p class="connectway">联系方式：&nbsp&nbspQQ&nbsp&nbsp<input type="text"
+					name="qq">&nbsp&nbsp&nbsp电话号码&nbsp&nbsp<input type="text" name="tel"></li>
+			</p>
+			<hr />
+			<p>任务类型：&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+				<input type="checkbox" name="workclass" value="求助" id="box" checked="checked">求助
+				<input type="checkbox" name="workclass" value="兼职" id="box">兼职
+				<input type="checkbox" name="workclass" value="失物招领" id="box">失物招领
+				<input type="checkbox" name="workclass" value="出售" id="box">出售
+				<input type="checkbox" name="workclass" value="闲置转让" id="box">闲置转让
+				<input type="checkbox" name="workclass" value="求购" id="box">求购
+				<input type="checkbox" name="workclass" value="娱乐" id="box">娱乐
+				<input type="checkbox" name="workclass" value="其他" id="box">其他
+			</p>
+
+			<textarea id='memo' style="height: 150px;width: 580px;resize: none;" placeholder="具体任务描述，任务要求--"
+				name="discription" id="textarea">
+</textarea>
+			<p>截止时间：<input type="datetime-local" name="time" value="" /></p>
+			<hr />
+			<p>任务积分：<input type="number" name="integral" value="" min="0">X100</p>
+			<hr />
+			<p><button style="width: 120px ;height: 30px" onclick="check()" title="请确认信息是否正确">我要发布</button></p>
+		</form>
+</body>
+
+</html>
