@@ -20,17 +20,59 @@
     <div class="wrapper">
         <!-- 顶部 -->
         <header>
+            <div class="navbar">
+                <!-- 品牌logo -->
+                <a href="index.html" class="logo-brand">
+                    <img src="img/logo-brand.png" alt="logo">
+                </a>
+                <!-- 导航条 -->
+                <ul class="ul-nav">
+                    <li class="active"><a href="">首页</a></li>
+                    <li><a href="school.html">校园动态</a></li>
+                    <li><a href="">上传</a></li>
+                    <li><a href="">我的</a></li>
+                </ul>
+                <!-- 最右侧用户模块 -->
+                <div class="user-info">
+                    <li>
+                        <a href="" class="notice">通知</a>
+                    </li>
+                    <li class="hover">
+                        <i class="fa fa-plus" id="hover-info"></i>
+                        <ul class="hover-info" style="display: none">
+                            <li>
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <a href="./makeFriends-submit.html" target="_blank">个人中心</a>
+                            </li>
+                            <li>
+                                <i class="fa fa-cog" aria-hidden="true"></i>
+                                <a href="./makeFriends-submit.html" target="_blank">账户设置</a>
+                            </li>
+                            <li>
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <a href="./makeFriends-submit.html" target="_blank">我的信息</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="" class="user-photo">
+                            <img src="img/user-photo.png" alt="用户头像">
+                        </a>
+                    </li>
+                </div>
+            </div>
         </header>
 
         <!-- 双列布局 -->
         <div class="content" style="height: 500px;">
             <!-- 左边部分，显示用户和查询内容-->
             <div class="center_left">
-                <div>
+                <div> 
                     <img src="img/personPicture.png" width="140px" height="123px" alt="用户头像" class="personimg">
-                    <span class="personname" id="user" title="小主，点击我修改昵称吧" name="personname">xiaoming</span>
+                    <span class="personname" id="user" title="小主，点击我修改昵称吧" name="personname">xiaoming</span> 
                     <img src="img/download.png" alt="download">
-                    <span class="uploadpower"><label>上传权限:</label>220MB</span>
+                    <span  class="uploadpower"><label>上传权限:</label>220MB</span>
                     <i title="VIP专享超大附件上传特权" class="fa fa-question-circle">
                     </i>
                     <div>
@@ -40,142 +82,115 @@
                                 <span id="integral">0</span>
                             </li>
                             <li>
-                                <label>总排名</label>
-                                <span id="rank">0</span>
-                            </li>
-                            <li>
-                                <label>上传资源</label>
-                                <span id="uploads">0</span>
-                            </li>
-                            <li>
-                                <label>下载资源</label>
-                                <span id="dowmloads">0</span>
-                            </li>
-                            <li>
-                                <label>创建专辑 </label>
-                                <span id="album">0</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-                <div class="show">
-
-                    <hr>
-                    <br>
-                    <ul>
-                        <a href="#">
-                            <li>全部</li>
-                        </a>
-                        <a href="#">
-                            <li>待审核</li>
-                        </a>
-                        <a href="#">
-                            <li>已通过</li>
-                        </a>
-                        <a href="#">
-                            <li>未通过</li>
-                        </a>
+                             <label>总排名</label>
+                             <span id="rank">0</span>
+                         </li>
+                         <li>
+                            <label>上传资源</label>
+                            <span id="uploads">0</span> 
+                        </li>
+                        <li>
+                            <label>下载资源</label>
+                            <span id="dowmloads">0</span> 
+                        </li>
+                        <li>
+                            <label>创建专辑 </label>
+                            <span id="album">0</span>
+                        </li>
                     </ul>
                 </div>
 
-                <div class="showScore">
+            </div>
+            <div class="show">
 
-                    <table>
-                        <tr>
-                            <td>积分操作</td>
-                            <td>时间</td>
-                        </tr>
-                    </table>
-                </div>
-
-                <img src="img/unfind.png" width="750px" height="150px" class="unfindimg">
-                <p align="center" id="unfinddiscription"></p>
-
+                <hr>
+                <br>
+                <ul>
+                    <a href="#"><li>全部</li></a>
+                    <a href="#"><li>待审核</li></a>
+                    <a href="#"><li>已通过</li></a>
+                    <a href="#"><li>未通过</li></a>
+                </ul> 
             </div>
 
-            <!--右侧，功能框，用户通过点击查询-->
-            <div class="center_right" align="center">
-                <ul>
+            <div class="showScore">
+                
+                <table>
+                   <tr>
+                       <td>积分操作</td>
+                       <td>时间</td>
+                   </tr>
+               </table>
+           </div>
 
-                    <a class="upload" href="#">
-                        <li>上传资源</li>
-                    </a>
+           <img src="img/unfind.png" width="750px" height="150px" class="unfindimg">
+           <p align="center" id="unfinddiscription"></p>
+           
+       </div>
+
+       <!--右侧，功能框，用户通过点击查询-->
+       <div class="center_right" align="center">
+        <ul>
+            
+           <a class="upload" href="#"><li>上传资源</li></a>
+           
+           
+           <a class="score" href="#"> <li onclick="showIntegralDetails()">积分明细</li></a>
+           
+           
+           <a class="img" href="setwork.html"><li>发布任务</li></a>
+
+           <a class="img" href="school.html"><li>校园动态</li></a>
+           
+           <a class="img" href="integral.html"><li>购买积分</li></a> 
+           
+           
+           <a class="img" href="#"><li>查找资料</li></a> 
 
 
-                    <a class="score" href="#">
-                        <li onclick="showIntegralDetails()">积分明细</li>
-                    </a>
+           <a class="img" href="pay.html" id="inoutintegral"><li>积分操作</li></a> 
+           
+       </ul>
+   </div>
+</div>
 
-
-                    <a class="img" href="setwork.html">
-                        <li>发布任务</li>
-                    </a>
-
-                    <a class="img" href="school.html">
-                        <li>校园动态</li>
-                    </a>
-
-                    <a class="img" href="integral.html">
-                        <li>购买积分</li>
-                    </a>
-
-
-                    <a class="img" href="#">
-                        <li>查找资料</li>
-                    </a>
-
-
-                    <a class="img" href="pay.html" id="inoutintegral">
-                        <li>积分操作</li>
-                    </a>
-
-                </ul>
+<!-- 底部 -->
+<footer>
+    <div class="wrapper">
+        <div class="link">
+            <dl>
+                <dt>网站相关</dt>
+                <dd>关于我们</dd>
+                <dd>服务条款</dd>
+                <dd>帮助中心</dd>
+                <dd>编辑器语法</dd>
+            </dl>
+            <dl>
+                <dt>常用链接</dt>
+                <dd>资网博客</dd>
+                <dd>资网论坛</dd>
+            </dl>
+            <dl>
+                <dt>联系我们</dt>
+                <dd>联系我们</dd>
+                <dd>加入我们</dd>
+                <dd>建议反馈</dd>
+            </dl>
+            <dl>
+                <dt>关注我们</dt>
+                <dd>新浪微博</dd>
+                <dd>Twitter</dd>
+            </dl>
+            <div class="license">
+                <h3>内容许可</h3>
+                <p>除特别说明外，用户内容均采用知识共享署名-非商业性使用-禁止演绎4.0 国际许可协议 (CC BY-NC-ND 4.0) 进行许可</p>
+                <p>本站由 高校资源共享平台 提供更新服务</p>
             </div>
         </div>
-
-        <!-- 底部 -->
-        <footer>
-            <div class="wrapper">
-                <div class="link">
-                    <dl>
-                        <dt>网站相关</dt>
-                        <dd>关于我们</dd>
-                        <dd>服务条款</dd>
-                        <dd>帮助中心</dd>
-                        <dd>编辑器语法</dd>
-                    </dl>
-                    <dl>
-                        <dt>常用链接</dt>
-                        <dd>资网博客</dd>
-                        <dd>资网论坛</dd>
-                    </dl>
-                    <dl>
-                        <dt>联系我们</dt>
-                        <dd>联系我们</dd>
-                        <dd>加入我们</dd>
-                        <dd>建议反馈</dd>
-                    </dl>
-                    <dl>
-                        <dt>关注我们</dt>
-                        <dd>新浪微博</dd>
-                        <dd>Twitter</dd>
-                    </dl>
-                    <div class="license">
-                        <h3>内容许可</h3>
-                        <p>除特别说明外，用户内容均采用知识共享署名-非商业性使用-禁止演绎4.0 国际许可协议 (CC BY-NC-ND 4.0) 进行许可</p>
-                        <p>本站由 高校资源共享平台 提供更新服务</p>
-                    </div>
-                </div>
-                <p class="copyright">Copyright © 2019 高校资源共享平台 当前版本 1.0.0</p>
-            </div>
-        </footer>
+        <p class="copyright">Copyright © 2019 高校资源共享平台 当前版本 1.0.0</p>
     </div>
-
-    <script src="plugin/react.js"></script>
-    <script src="plugin/react-dom.js"></script>
-    <script src="plugin/js.cookie.min.js"></script>
-    <script src="js/header.js"></script>
+</footer>
+</div>
 </body>
 
 </html>

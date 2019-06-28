@@ -1,4 +1,4 @@
-
+const baseUrl='http://10.129.235.6:9005';
 function pay(){
     var incometel=$("input[name='incometel']").val().trim();
     var integral=$("input[name='integral']").val().trim();
@@ -9,22 +9,21 @@ function pay(){
     }else{
         $.ajax({
             type:'get',
-            url:'http://localhost:9005/me/payIntegral',
+            url:baseUrl+'/me/payIntegral',
             dataType:'json',
             data:$('#form').serialize(),
 
             success:function (data) {
                 console.log(data.flag);
-               if(data.flag){
-                alert("积分交易完成！");
-               }else{
-                alert(data.message);
-               }
+                if(data.flag){
+                    alert("积分交易完成！");
+                }else{
+                    alert(data.message);
+                }
             },
 
             error:function () {
             }
         });
     }
-
 }

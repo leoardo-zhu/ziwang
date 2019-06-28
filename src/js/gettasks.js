@@ -1,10 +1,11 @@
+const baseUrl='http://10.129.235.6:9005';
 var detaildata;
 var workid;
 //页面加载，兼职和文章推送，从数据库将数据查出来
 $(document).ready(
     $.ajax({
         type:'get',
-        url:'http://localhost:9005/me/getTask',
+        url:baseUrl+'/me/getTask',
         dataType:'json',
         data:{
         },
@@ -40,7 +41,7 @@ $(document).ready(
 //右侧文章推送，如果过长，将文章折叠
 $.ajax({
     type:'get',
-    url:'http://localhost:9005/me/getTrend',
+    url:baseUrl+'/me/getTrend',
     dataType:'json',
     data:{
     },
@@ -112,7 +113,7 @@ function applyTask(){
    var taskid=detail.id;
    $.ajax({
     type:'get',
-    url:'http://localhost:9005/me/applyTask',
+    url:baseUrl+'/me/applyTask',
     dataType:'json',
     data:{
         'taskid':taskid
@@ -134,7 +135,7 @@ $(document).ready(
         token = 'eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxMTMyNjIyOTA1NjI1MTUzNTM2Iiwic3ViIjoicm9vdCIsImlhdCI6MTU2MTM2NTYzMCwiZXhwIjoxNTYxMzY5MjMyLCJyb2xlIjoidXNlciJ9.AvFHjZwvkh83ASp_qlwF4Y09_VkCL0alQk-vfId0ib4'
 $.ajax({
     type:'get',
-    url:'http://localhost:9005/me/getMePersonalInfo/'+token,
+    url:baseUrl+'/me/getMePersonalInfo/'+token,
     dataType:'json',
     data:{
     },
